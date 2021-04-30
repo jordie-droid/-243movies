@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Button from "./Button";
 
 export default function Header() {
   return (
@@ -20,6 +21,10 @@ export default function Header() {
         <Link className="" to="">
           Acteurs
         </Link>
+        <div className>
+          <Button>Connexion</Button>
+          <Button>Créer votre compte</Button>
+        </div>
       </div>
     </header>
   );
