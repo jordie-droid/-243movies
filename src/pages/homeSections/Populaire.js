@@ -12,7 +12,7 @@ export default function Populaire() {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: ${transparentLight};
+    background-color: ${dark};
     margin-top: 50px;
   `;
   const Title = styled.h2`
@@ -21,9 +21,12 @@ export default function Populaire() {
     margin-left: 155px;
   `;
   const PopularContainer = styled.div`
-    width: 100%;
+    position: relative;
+    width: 73%;
     height: 100%;
-    background-color: ${dark};
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: ${transparentLight};
   `;
   const ButtonGoToPrev = styled.div`
     position: absolute;
@@ -31,6 +34,7 @@ export default function Populaire() {
     justify-content: center;
     align-items: center;
     top: 50%;
+    left: -20%;
     transform: translateY(-50%);
     width: 50px;
     height: 50px;
@@ -47,7 +51,7 @@ export default function Populaire() {
     justify-content: center;
     align-items: center;
     top: 50%;
-    right: 0;
+    right: -20%;
     transform: translateY(-50%);
     width: 50px;
     height: 50px;
