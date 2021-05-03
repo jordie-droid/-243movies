@@ -67,7 +67,6 @@ export default function Slider() {
     border: solid 1px ${light};
     border-radius: 100%;
     transition: 1s;
-    cursor: pointer;
     padding: 15px 15px;
     &:hover {
       background-color: ${orange};

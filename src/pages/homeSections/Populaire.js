@@ -1,19 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import Card1 from "../../components/Card1";
+import Card from "../../components/Card";
+import HorizontalSeparator from "../../components/HorizontalSeparator";
 import Theme from "../../theme";
 
 export default function Populaire() {
-  const { dark, transparentLight, orange, light } = Theme;
+  const { dark, orange, light } = Theme;
 
   /************* STYLES ****************/
   const PopularMainContainer = styled.section`
     position: relative;
-    height: 100vh;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     background-color: ${dark};
     margin-top: 50px;
+    overflow: hidden;
   `;
   const Title = styled.h2`
     font-size: 1.9rem;
@@ -22,11 +24,15 @@ export default function Populaire() {
   `;
   const PopularContainer = styled.div`
     position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     width: 73%;
     height: 100%;
     left: 50%;
+    padding: 10px 0;
     transform: translateX(-50%);
-    background-color: ${transparentLight};
+    background-color: ${dark};
   `;
   const ButtonGoToPrev = styled.div`
     position: absolute;
@@ -69,8 +75,12 @@ export default function Populaire() {
       <PopularContainer>
         <ButtonGoToPrev>Prev</ButtonGoToPrev>
         <ButtonGoToNext>Next</ButtonGoToNext>
-        <Card1></Card1>
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
       </PopularContainer>
+      <HorizontalSeparator></HorizontalSeparator>
     </PopularMainContainer>
   );
 }
