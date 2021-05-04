@@ -11,10 +11,10 @@ export default function App() {
   return (
     <>
       <Header />
-      <Route exact path="/" component={Accueil}/>
-      <Route exact path="/Series" component={Series}/>
-      <Route exact path="/Films" component={Films}/>
-      <Route exact path="/Acteurs" component={Acteurs}/>
+      <Route exact path="/" component={Accueil} />
+      <Route exact path="/Series" component={Series} />
+      <Route exact path="/Films" component={Films} />
+      <Route exact path="/Acteurs" component={Acteurs} />
     </>
   );
 }

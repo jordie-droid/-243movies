@@ -5,12 +5,11 @@ import Theme from "../theme";
 import Button from "./Button";
 import Logo from "../images/Logo.svg";
 import Image from "./Image";
-import Input from "./Input";
+import SearchIcon from "../images/icons/search.svg";
 
-export default function Header() {
-  const { transparentLight, dark } = Theme;
-  const widthInput = "370px";
-  const textAlign = "center";
+
+
+  const { transparentLight, dark, orange, light } = Theme;
 
   /****************STYLES******************/
 
@@ -56,13 +55,36 @@ export default function Header() {
   `;
 
   const InputSearchContainer = styled.div`
-    width: 100%;
+    position: relative;
+    margin-top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 370px;
     background-color: ${dark};
     padding: 20px 0;
-    display: flex;
-    justify-content: center;
     align-items: center;
   `;
+
+  const InputSearch = styled.input`
+    background-color: ${dark};
+    border: solid 1px ${orange};
+    width: 370px;
+    text-align: center;
+    height: 40px;
+    color: ${light};
+    padding: 0 35px;
+    border-radius: 30px;
+    &:focus {
+      outline: none;
+    }
+  `;
+
+  const IconSearch = styled.img`
+    width: 20px;
+    height: 20px;
+  `;
+
+export default function Header() {
   /****************** SCRIPTS *****************/
 
   const activeMenu = (clickedMenu) => {
@@ -103,18 +125,17 @@ export default function Header() {
           </UnOrderedList>
         </NavFlexBox>
         <GroupButtons>
-          <Button width="100px">Connexion</Button>
-          <Button width="100px">Créer un compte</Button>
+          <Button>Connexion</Button>
+          <Button>Créer un compte</Button>
         </GroupButtons>
       </LogoNavButtonsContainer>
-      <InputSearchContainer>
-        <Input
-          width={widthInput}
-          centerText={textAlign}
+      <InputSearchContainer className="input-search-container">
+        <InputSearch
           type="search"
-          placeholder="Rechercher un film, une série ou un acteur"
-          named="inputSearch"
-        />
+          placeholder="Faites votre recherche"
+        ></InputSearch>
+        <IconSearch src={SearchIcon}></IconSearch>
+        {/* </div> */}
       </InputSearchContainer>
     </PageHeader>
   );
