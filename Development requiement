@@ -6,3 +6,35 @@
 5. button
 6. card
 my key = d6ad6af3d05f971cd2712d949276910b
+
+
+
+
+
+<InformationContainer>
+          <Title1>Plug Love</Title1>
+          <BrefDescription>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Necessitatibus dolores reprehenderit repudiandae nam facilis illum
+            excepturi nihil amet culpa a. Incidunt earum distinctio doloribus
+            perspiciatis nostrum fugiat! Quae, eligendi odio? Lorem, ipsum dolor
+            sit amet consectetur adipisicing elit. Necessitatibus dolores
+            reprehenderit repudiandae nam facilis illum excepturi nihil amet
+            culpa a. Incidunt earum distinctio doloribus perspiciatis nostrum
+            fugiat! Quae, eligendi odio?
+          </BrefDescription>
+          <Popularty>
+            <strong>19K</strong>
+          </Popularty>
+          <With>Avec</With>
+          <Actors>
+            <ActorsImage src={Murder}></ActorsImage>
+            <ActorsImage src={Murder}></ActorsImage>
+            <ActorsImage src={Murder}></ActorsImage>
+            <ActorsImage src={Murder}></ActorsImage>
+            <ActorsImage src={Murder}></ActorsImage>
+            <ActorsImage src={Murder}></ActorsImage>
+            <ActorsImage src={Murder}></ActorsImage>
+            <ActorsImage src={Murder}></ActorsImage>
+          </Actors>
+        </InformationContainer>

@@ -1,165 +1,90 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import "../../css/style.css";
 import Theme from "../../theme";
-import PlugLove from "../../images/vignettes/78d62a98-830e-4c39-a853-d2993e562ee8.jpg";
-import Murder from "../../images/vignettes/bJs8Y6T88NcgksxA8UaVl4YX8p8.jpg";
 import Button from "../../components/Button";
 import Title1 from "../../components/Title1";
+import star from "../../images/icons/star.svg";
 
 const { transparentLight, dark, light, orange } = Theme;
 
-/************** STYLES **************/
-const SliderMainContainer = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 170px;
-  height: 70vh;
+const SliderMainContainer = styled.div`
   position: relative;
-  background-color: ${dark};
-`;
-
-const SliderContainer = styled.div`
-  width: 94%;
-  height: 100%;
-  border-radius: 10px;
-  transition: 2s;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 100vh;
+  margin-top: 160px;
+  box-sizing: border-box;
+  overflow: hidden;
   background-color: ${transparentLight};
 `;
 
-const BigFiche = styled.img`
-  width: 300px;
-  height: 470px;
-  position: absolute;
-  top: -15px;
-  left: 20px;
-  border-radius: 8px;
-`;
-
-const SmallFiche = styled.img`
-  width: 100px;
-  height: 130px;
-  position: absolute;
-  bottom: -45px;
-  right: 20px;
-  border-radius: 8px;
-`;
-
-const SlideAutoNavigation = styled.div``;
-const SlideManuelNavigation = styled.div`
-  position: absolute;
-  width: 93%;
+const SlideContainer = styled.div`
   display: flex;
-  justify-content: center;
-  top: 85%;
+  flex-direction: column;
+  width: 300px;
+  height: 95%;
+  background-color: ${dark};
 `;
 
-const SelectButtonOne = styled.div``;
-const SelectButtonTwo = styled.div``;
-const SelectButtonThree = styled.div``;
-const SelectButtonFour = styled.div``;
-
-const Label = styled.label`
-  margin: 15px;
-  border: solid 1px ${light};
-  border-radius: 100%;
-  transition: 1s;
-  padding: 15px 15px;
-  &:hover {
-    background-color: ${orange};
-  }
+const SlideImage = styled.img`
+  width: 100%;
+  height: auto;
 `;
 
-const InformationContainer = styled.div`
-  position: absolute;
-  width: 70%;
-  left: 320px;
-  padding: 10px 15px;
+const DescriptionContainer = styled.div`
+  padding: 20px;
+  width: 100%;
+  height: 60%;
+  border: solid 1px #fff;
 `;
 
-const BrefDescription = styled.p`
+const MovieTitle = styled.h1`
+  font-size: 1.9rem;
+  color: ${light};
+  margin-bottom: 10px;
+`;
+
+const Overwiew = styled.p`
   font-size: 1rem;
   color: ${light};
-  margin-bottom: 10px;
-  line-height: 20px;
 `;
-const Popularty = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
-  font-size: 1.7rem;
-  color: ${light};
-  margin-bottom: 10px;
-`;
-const With = styled.strong`
+
+const Note = styled.strong`
+  position: relative;
   display: inline-block;
-  font-size: 1.7rem;
+  margin-top: 20px;
+  font-size: 1.4rem;
   color: ${light};
-  margin-bottom: 10px;
-`;
-const Actors = styled.div`
-  width: 100%;
-  display: flex;
-`;
-const ActorsImage = styled.img`
-  width: 100px;
-  height: 150px;
-  margin-right: 20px;
-  border-radius: 8px;
 `;
 
-export default function Slider() {
-  /**************** SCRIPTS ***************/
-
+export default function Slider(props) {
+  let urlImage = "";
+  const sliderData = props.data;
+  console.log(sliderData);
   return (
     <SliderMainContainer>
-      <SliderContainer>
-        <BigFiche src={PlugLove}></BigFiche>
-        <SlideAutoNavigation>
-          <SelectButtonOne></SelectButtonOne>
-          <SelectButtonTwo></SelectButtonTwo>
-          <SelectButtonThree></SelectButtonThree>
-          <SelectButtonFour></SelectButtonFour>
-        </SlideAutoNavigation>
-        <SlideManuelNavigation>
-          <Label htmlFor="radio1"></Label>
-          <Label htmlFor="radio2"></Label>
-          <Label htmlFor="radio3"></Label>
-          <Label htmlFor="radio4"></Label>
-        </SlideManuelNavigation>
-        <InformationContainer>
-          <Title1>Plug Love</Title1>
-          <BrefDescription>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Necessitatibus dolores reprehenderit repudiandae nam facilis illum
-            excepturi nihil amet culpa a. Incidunt earum distinctio doloribus
-            perspiciatis nostrum fugiat! Quae, eligendi odio? Lorem, ipsum dolor
-            sit amet consectetur adipisicing elit. Necessitatibus dolores
-            reprehenderit repudiandae nam facilis illum excepturi nihil amet
-            culpa a. Incidunt earum distinctio doloribus perspiciatis nostrum
-            fugiat! Quae, eligendi odio?
-          </BrefDescription>
-          <Popularty>
-            <strong>19K</strong>
-          </Popularty>
-          <With>Avec</With>
-          <Actors>
-            <ActorsImage src={Murder}></ActorsImage>
-            <ActorsImage src={Murder}></ActorsImage>
-            <ActorsImage src={Murder}></ActorsImage>
-            <ActorsImage src={Murder}></ActorsImage>
-            <ActorsImage src={Murder}></ActorsImage>
-            <ActorsImage src={Murder}></ActorsImage>
-            <ActorsImage src={Murder}></ActorsImage>
-            <ActorsImage src={Murder}></ActorsImage>
-          </Actors>
-        </InformationContainer>
-        <Button width="150px" className="slide__button-show-more">
-          Voir plus
-        </Button>
-        <SmallFiche src={Murder}></SmallFiche>
-      </SliderContainer>
+      {sliderData.map(({ id, backdrop_path, original_title }) => {
+        urlImage = "https://image.tmdb.org/t/p/w185" + backdrop_path;
+        return (
+          <SlideContainer key={id}>
+            <SlideImage src={urlImage}></SlideImage>;
+            <DescriptionContainer>
+              <MovieTitle>{original_title}</MovieTitle>
+              <Overwiew>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
+                dignissimos in minus explicabo blanditiis, vel maxime tempora
+                labore! Ut reiciendis quisquam incidunt quidem placeat enim
+                porro necessitatibus dolorum, delectus sapiente!
+              </Overwiew>
+              <Note>Note : 9.4</Note>
+            </DescriptionContainer>
+            ;
+          </SlideContainer>
+        );
+      })}
     </SliderMainContainer>
   );
 }
