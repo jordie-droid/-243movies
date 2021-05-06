@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Card from "./CardPoularMovies";
 import Theme from "../theme";
+import { Modal } from "react-bootstrap";
+import Iframe from "./TrailerMovie";
 
 const { dark, orange } = Theme;
 
@@ -34,14 +36,47 @@ const PopularContainer = styled.div`
 `;
 
 export default function PopularMovie({ title, data }) {
+  const [show, setShow] = useState(false);
+  const [movieTitle, setMovieTitle] = useState("");
+  const [movieID, setMovieID] = useState(0);
+
+  const handleClose = () => setShow(false);
+  const handleShow = ({ title, id }) => {
+    setShow(true);
+    setMovieTitle(title);
+    setMovieID(id);
+  };
+
   return (
-    <PopularMainContainer>
-      <Title>{title}</Title>
-      <PopularContainer>
-        {data.map((data) => {
-          return <Card key={data.id} data={data}></Card>;
-        })}
-      </PopularContainer>
-    </PopularMainContainer>
+    <>
+      <PopularMainContainer>
+        <Title>{title}</Title>
+        <PopularContainer>
+          {data.map((data) => {
+            return (
+              <Card
+                key={data.id}
+                data={data}
+                handleShow={() => handleShow(data)}
+              ></Card>
+            );
+          })}
+        </PopularContainer>
+      </PopularMainContainer>
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>{movieTitle}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Iframe movieID={movieID}></Iframe>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 }

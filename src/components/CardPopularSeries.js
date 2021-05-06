@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Theme from "../theme";
 
-const { light, dark } = Theme;
+const { light, dark, orange, transparentDark } = Theme;
 const CardContainer = styled.div`
   width: 300px;
   margin: 20px 0px;
@@ -33,9 +33,8 @@ const Overview = styled.div`
   width: 100%;
   height: 250px;
   max-height: 250px;
-  background-color: ${dark};
+  background-color: ${transparentDark};
   color: ${light};
-  opacity: 0.7;
   top: 0;
   transition: 0.3s;
   visibility: hidden;
@@ -43,6 +42,18 @@ const Overview = styled.div`
   padding: 10px;
   overflow-x: auto;
   scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 1em;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${orange};
+    border-radius: 20px;
+  }
 `;
 
 export default function Card({ data }) {

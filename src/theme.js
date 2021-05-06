@@ -3,7 +3,8 @@ const Theme = {
   transparentLight: "#ffffff0e",
   light: "#fff",
   dark: "#000",
-  gray: "c4c4c4",
+  gray: "darkgrey",
+  transparentDark : "#030303a2"
 };
 
 export default Theme;

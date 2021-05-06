@@ -10,7 +10,7 @@ import Acteurs from "./pages/Acteurs";
 import { PopularMovieProvider } from "./context/PopularMovie";
 import { PopularSeriesProvider } from "./context/PopularSerie";
 import { PopularActorsProvider } from "./context/PopularActors";
-import Error404 from "./context/Error404";
+import Error404 from "./pages/Error404";
 
 export default function App() {
   return (
