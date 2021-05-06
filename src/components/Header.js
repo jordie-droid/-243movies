@@ -107,17 +107,25 @@ export default function Header() {
               </Link>
             </UnStyledList>
             <UnStyledList>
-              <Link className="nav__link" onClick={activeMenu} to="/Series">
+              <Link
+                className="nav__link"
+                onClick={activeMenu}
+                to="/series.html"
+              >
                 Séries
               </Link>
             </UnStyledList>
             <UnStyledList>
-              <Link className="nav__link" onClick={activeMenu} to="/Films">
+              <Link className="nav__link" onClick={activeMenu} to="/films.html">
                 Films
               </Link>
             </UnStyledList>
             <UnStyledList>
-              <Link className="nav__link" onClick={activeMenu} to="/Acteurs">
+              <Link
+                className="nav__link"
+                onClick={activeMenu}
+                to="/acteurs.html"
+              >
                 Acteurs
               </Link>
             </UnStyledList>

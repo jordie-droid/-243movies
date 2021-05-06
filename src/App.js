@@ -1,5 +1,5 @@
 import React from "react-dom";
-import { Route } from "react-router";
+import { Route, Switch } from "react-router";
 import Header from "./components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/style.css";
@@ -10,6 +10,7 @@ import Acteurs from "./pages/Acteurs";
 import { PopularMovieProvider } from "./context/PopularMovie";
 import { PopularSeriesProvider } from "./context/PopularSerie";
 import { PopularActorsProvider } from "./context/PopularActors";
+import Error404 from "./context/Error404";
 
 export default function App() {
   return (
@@ -18,10 +19,13 @@ export default function App() {
         <PopularSeriesProvider>
           <PopularActorsProvider>
             <Header />
-            <Route exact path="/" component={Accueil} />
-            <Route exact path="/Series" component={Series} />
-            <Route exact path="/Films" component={Films} />
-            <Route exact path="/Acteurs" component={Acteurs} />
+            <Switch>
+              <Route exact path="/" component={Accueil} />
+              <Route exact path="/series.html" component={Series} />
+              <Route exact path="/films.html" component={Films} />
+              <Route exact path="/acteurs.html" component={Acteurs} />
+              <Route component={Error404} />
+            </Switch>
           </PopularActorsProvider>
         </PopularSeriesProvider>
       </PopularMovieProvider>
