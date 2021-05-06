@@ -1,34 +1,38 @@
 import React from "react";
-import PlugLove from "../images/vignettes/78d62a98-830e-4c39-a853-d2993e562ee8.jpg";
 import styled from "styled-components";
 import Theme from "../theme";
 
 const { light, dark } = Theme;
 const CardContainer = styled.div`
+  width: 300px;
+  margin: 20px 0px;
   position: relative;
+  background-color: ${dark};
 `;
 
 const Image = styled.img`
-  width: 200px;
+  width: 100%;
   height: 250px;
   object-fit: cover;
   border-radius: 8px;
 `;
 const FilmTitle = styled.h2`
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   margin: 10px 0;
   color: ${light};
 `;
 
 const DescriptionTitle = styled.strong`
-  font-size: 1rem;
-  margin: 0 0 10px;
+  font-size: 0.8rem;
+  margin: -5px 0 -15px;
   color: ${light};
 `;
 const Overview = styled.div`
   position: absolute;
+  font-size: 0.8rem;
   width: 100%;
-  height: 73%;
+  height: 250px;
+  max-height: 250px;
   background-color: ${dark};
   color: ${light};
   opacity: 0.7;
@@ -37,16 +41,21 @@ const Overview = styled.div`
   visibility: hidden;
   cursor: pointer;
   padding: 10px;
+  overflow-x: auto;
+  scrollbar-width: thin;
 `;
 
-export default function Card() {
+export default function Card({ data }) {
+  let urlImage = `https://image.tmdb.org/t/p/w1280`;
+
   return (
     <CardContainer className="card">
-      <Image src={PlugLove}></Image>
-      <FilmTitle>Plug Love</FilmTitle>
-      <DescriptionTitle>(Year) duration</DescriptionTitle> <br />
-      <DescriptionTitle>Categories</DescriptionTitle>
-      <Overview>JE SUIS</Overview>
+      <Image src={`${urlImage}${data.backdrop_path}`}></Image>
+      <FilmTitle>{data.title}</FilmTitle>
+      <DescriptionTitle>Apparu le : {data.release_date}</DescriptionTitle>
+      <br />
+      <DescriptionTitle>Note : {data.vote_average}</DescriptionTitle>
+      <Overview>{data.overview}</Overview>
     </CardContainer>
   );
 }

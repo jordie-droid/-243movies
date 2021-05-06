@@ -17,4 +17,4 @@ export const PopularMovieProvider = ({ children }) => {
       {children}
     </PopularMovieContext.Provider>
   );
-};
+}; 

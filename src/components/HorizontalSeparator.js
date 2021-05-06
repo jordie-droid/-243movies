@@ -6,8 +6,9 @@ const Hr = styled.hr`
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+  background-color: #fff;
 `;
 
 export default function HorizontalSeparator() {
-  return <Hr />;
+  return <Hr></Hr>;
 }

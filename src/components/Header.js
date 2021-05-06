@@ -14,7 +14,7 @@ const PageHeader = styled.header`
   width: 100vw;
   position: fixed;
   top: 0;
-  z-index: 9999;
+  z-index: 9998;
 `;
 
 const LogoNavButtonsContainer = styled.div`
@@ -45,7 +45,7 @@ const UnStyledList = styled.li`
 `;
 
 const GroupButtons = styled.div`
-  width: 210px;
+  width: 230px;
   display: flex;
   justify-content: space-between;
 `;
@@ -53,12 +53,17 @@ const GroupButtons = styled.div`
 const InputSearchContainer = styled.div`
   position: relative;
   margin-top: 10px;
-  left: 50%;
+  left: 49.3%;
   transform: translateX(-50%);
   width: 370px;
   background-color: ${dark};
   padding: 20px 0;
   align-items: center;
+  img {
+    position: absolute;
+    top: 28px;
+    right: 10px;
+  }
 `;
 
 const InputSearch = styled.input`
@@ -129,7 +134,6 @@ export default function Header() {
           placeholder="Faites votre recherche"
         ></InputSearch>
         <IconSearch src={SearchIcon}></IconSearch>
-        {/* </div> */}
       </InputSearchContainer>
     </PageHeader>
   );
