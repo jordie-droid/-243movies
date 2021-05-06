@@ -1,6 +1,15 @@
 import React from "react";
-import PageForFoor from "../../components/PopularMovies";
+import HorizontalSeparator from "../../components/HorizontalSeparator";
+import PopularActors from "../../components/PoupularActors";
 
-export default function Actors() {
-  return <PageForFoor title="Ateurs"></PageForFoor>;
+export default function Actors({ data }) {
+  return (
+    <>
+      <PopularActors
+        title="20 acteurs les plus populaires"
+        data={data}
+      ></PopularActors>
+      <HorizontalSeparator></HorizontalSeparator>
+    </>
+  );
 }

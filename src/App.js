@@ -9,17 +9,20 @@ import Films from "./pages/Films";
 import Acteurs from "./pages/Acteurs";
 import { PopularMovieProvider } from "./context/PopularMovie";
 import { PopularSeriesProvider } from "./context/PopularSerie";
+import { PopularActorsProvider } from "./context/PopularActors";
 
 export default function App() {
   return (
     <>
       <PopularMovieProvider>
         <PopularSeriesProvider>
-          <Header />
-          <Route exact path="/" component={Accueil} />
-          <Route exact path="/Series" component={Series} />
-          <Route exact path="/Films" component={Films} />
-          <Route exact path="/Acteurs" component={Acteurs} />
+          <PopularActorsProvider>
+            <Header />
+            <Route exact path="/" component={Accueil} />
+            <Route exact path="/Series" component={Series} />
+            <Route exact path="/Films" component={Films} />
+            <Route exact path="/Acteurs" component={Acteurs} />
+          </PopularActorsProvider>
         </PopularSeriesProvider>
       </PopularMovieProvider>
     </>

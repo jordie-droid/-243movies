@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Theme from "../theme";
 
-const { light, dark, orange } = Theme;
+const { light, dark } = Theme;
 const CardContainer = styled.div`
   width: 300px;
   margin: 20px 0px;

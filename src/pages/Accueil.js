@@ -6,12 +6,15 @@ import Series from "./homeSections/Series";
 import Films from "./homeSections/Films";
 import Actors from "./homeSections/Actors";
 import { PopularSerieContext } from "../context/PopularSerie";
+import {PopularActorsContext} from "../context/PopularActors";
 
 export default function Accueil() {
   const [PopularMoviesData] = useContext(PopularMovieContext);
   const [PopularSeriesData] = useContext(PopularSerieContext);
+  const [PopularActors] = useContext(PopularActorsContext);
   const popularMoviesData = PopularMoviesData.results;
   const popularSeriesData = PopularSeriesData.results;
+  const popularActors = PopularActors.results;
 
   const showHomePage = () => {
     if (PopularMoviesData.length === 0) {
@@ -35,8 +38,8 @@ export default function Accueil() {
           <HomeSlider data={popularMoviesData}></HomeSlider>
           <Populaire data={popularMoviesData}></Populaire>
           <Series data={popularSeriesData}></Series>
-          {/* <Films></Films>
-          <Actors></Actors> */}
+          {/* <Films></Films> */}
+          <Actors data={popularActors}></Actors>
         </>
       );
     }
