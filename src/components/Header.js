@@ -90,7 +90,7 @@ const IconSearch = styled.img`
   height: 20px;
 `;
 
-export default function Header() {
+export default function Header({ getInfo }) {
   const activeMenu = (clickedMenu) => {
     const activedMenu = document.querySelector(".nav__link.actived");
     const currentMenu = clickedMenu.target;
@@ -99,11 +99,12 @@ export default function Header() {
   };
 
   let [infoToSearch, setInfoToSearch] = useState();
+  let goToSearch = useHistory();
 
   const submitData = (event) => {
     event.preventDefault();
-    
-    console.log(infoToSearch);
+    goToSearch.push("/recherche.html");
+    getInfo(infoToSearch);
   };
 
   return (
