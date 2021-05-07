@@ -66,7 +66,13 @@ export default function Card({ data, handleShow }) {
   let urlImage = `https://image.tmdb.org/t/p/w1280`;
 
   return (
-    <OverlayTrigger overlay={<Tooltip id="tooltip">Clique sur l'image pour la vidéo d'annonce</Tooltip>}>
+    <OverlayTrigger
+      overlay={
+        <Tooltip id="tooltip">
+          Clique sur l'image pour la vidéo d'annonce
+        </Tooltip>
+      }
+    >
       <span className="d-inline-block">
         <CardContainer className="card">
           <Image src={`${urlImage}${data.backdrop_path}`}></Image>

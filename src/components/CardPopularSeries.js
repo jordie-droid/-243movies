@@ -62,7 +62,7 @@ const Overview = styled.div`
   }
 `;
 
-export default function Card({ data }) {
+export default function Card({ data, handleShow }) {
   let urlImage = `https://image.tmdb.org/t/p/w1280`;
   return (
     <OverlayTrigger
@@ -79,7 +79,7 @@ export default function Card({ data }) {
           <DescriptionTitle>Apparu le : {data.first_air_date}</DescriptionTitle>
           <br />
           <DescriptionTitle>Note : {data.vote_average}</DescriptionTitle>
-          <Overview>{data.overview}</Overview>
+          <Overview onClick={handleShow}>{data.overview}</Overview>
           <Link className="btn-show-more" to="/">
             Voir plus
           </Link>

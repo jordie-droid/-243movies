@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Card from "./CardPopularSeries";
 import Theme from "../theme";
+import { Modal } from "react-bootstrap";
+import Iframe from "./TrailerSerie";
 
 const { dark, orange } = Theme;
 
@@ -33,17 +35,55 @@ const PopularContainer = styled.div`
   background-color: ${dark};
 `;
 
-export default function PopularSerie({ title, data }) {
+const Dialog = styled.div``;
+
+export default function PopularSerie({ name, data }) {
+  const [show, setShow] = useState(false);
+  const [serieTitle, setSerieTitle] = useState("");
+  const [serieID, setSerieID] = useState(0);
+
+  const handleClose = () => setShow(false);
+
+  const handleShow = (name, idmovie) => {
+    setShow(true);
+    setSerieTitle(name);
+    setSerieID(idmovie);
+  };
+
   return (
-    <PopularMainContainer>
-      <Title>{title}</Title>
-      <PopularContainer>
-        {data.map((data) => {
-          return (
-            <Card key={data.id} data={data}></Card>
-          );
-        })}
-      </PopularContainer>
-    </PopularMainContainer>
+    <>
+      <PopularMainContainer>
+        <Title>{name}</Title>
+        <PopularContainer>
+          {data.map((data) => {
+            return (
+              <Card
+                key={data.id}
+                data={data}
+                handleShow={() => handleShow(data.name, data.id)}
+              ></Card>
+            );
+          })}
+        </PopularContainer>
+      </PopularMainContainer>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        className="pt-200"
+      >
+        <Dialog>
+          <Modal.Header closeButton>
+            <Modal.Title>{serieTitle}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="bg-dark">
+            <Iframe serieID={serieID}></Iframe>
+          </Modal.Body>
+        </Dialog>
+      </Modal>
+    </>
   );
 }

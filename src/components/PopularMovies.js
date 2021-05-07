@@ -36,7 +36,6 @@ const PopularContainer = styled.div`
 `;
 
 const Dialog = styled.div`
-  /* margin-top: 200px; */
 `;
 
 export default function PopularMovie({ title, data }) {
