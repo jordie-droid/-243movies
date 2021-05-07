@@ -81,7 +81,7 @@ export default function Card({ data, handleShow }) {
           <br />
           <DescriptionTitle>Note : {data.vote_average}</DescriptionTitle>
           <Overview onClick={handleShow}>{data.overview}</Overview>
-          <Link className="btn-show-more" to="/">
+          <Link className="btn-show-more" to="/info.html">
             Voir plus
           </Link>
         </CardContainer>

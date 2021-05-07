@@ -21,7 +21,7 @@ export default function Iframe({ movieID }) {
         ></iframe>
       );
     } else {
-      return <p>La vidéo d'annonce n'est pas encore disponible</p>;
+      return <p>La vidéo d'annonce n'est pas encore disponible.</p>;
     }
   };
 

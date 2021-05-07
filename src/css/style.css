@@ -71,8 +71,8 @@ body {
   color: #000;
 }
 
-#tooltip-top > .tooltip-arrow {
-  background-color: #fff !important;
+#tooltip-top .tooltip-arrow {
+  background-color: #fff;
 }
 
 .nav__link {
