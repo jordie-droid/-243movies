@@ -98,13 +98,14 @@ export default function Header({ getInfo }) {
     currentMenu.classList.add("actived");
   };
 
-  let [infoToSearch, setInfoToSearch] = useState();
+  let [infoToSearch, setInfoToSearch] = useState("");
   let goToSearch = useHistory();
 
   const submitData = (event) => {
     event.preventDefault();
     goToSearch.push("/recherche.html");
     getInfo(infoToSearch);
+    setInfoToSearch("");
   };
 
   return (
@@ -154,7 +155,8 @@ export default function Header({ getInfo }) {
         <form onSubmit={submitData}>
           <InputSearch
             type="search"
-            placeholder="Faites votre recherche"
+            placeholder="Rechercher un film, une série ou un acteur"
+            value={infoToSearch}
             onChange={(event) => {
               setInfoToSearch(event.target.value);
             }}

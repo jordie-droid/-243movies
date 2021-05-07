@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Theme from "../theme";
-import { Link } from "react-router-dom";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const { light, dark, orange, transparentDark } = Theme;
@@ -80,9 +79,6 @@ export default function Card({ data, handleShow }) {
           <br />
           <DescriptionTitle>Note : {data.vote_average}</DescriptionTitle>
           <Overview onClick={handleShow}>{data.overview}</Overview>
-          <Link className="btn-show-more" to="/info.html">
-            Voir plus
-          </Link>
         </CardContainer>
       </span>
     </OverlayTrigger>

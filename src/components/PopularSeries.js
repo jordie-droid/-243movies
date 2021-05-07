@@ -37,7 +37,7 @@ const PopularContainer = styled.div`
 
 const Dialog = styled.div``;
 
-export default function PopularSerie({ name, data }) {
+export default function PopularSerie({ title, name, data }) {
   const [show, setShow] = useState(false);
   const [serieTitle, setSerieTitle] = useState("");
   const [serieID, setSerieID] = useState(0);
@@ -53,7 +53,7 @@ export default function PopularSerie({ name, data }) {
   return (
     <>
       <PopularMainContainer>
-        <Title>{name}</Title>
+        <Title>{title}</Title>
         <PopularContainer>
           {data.map((data) => {
             return (
