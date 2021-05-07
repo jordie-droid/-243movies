@@ -35,6 +35,10 @@ const PopularContainer = styled.div`
   background-color: ${dark};
 `;
 
+const Dialog = styled.div`
+  /* margin-top: 200px; */
+`;
+
 export default function PopularMovie({ title, data }) {
   const [show, setShow] = useState(false);
   const [movieTitle, setMovieTitle] = useState("");
@@ -69,13 +73,18 @@ export default function PopularMovie({ title, data }) {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        className="pt-200"
       >
-        <Modal.Header closeButton>
-          <Modal.Title>{movieTitle}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Iframe movieID={movieID}></Iframe>
-        </Modal.Body>
+        <Dialog>
+          <Modal.Header closeButton>
+            <Modal.Title>{movieTitle}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="bg-dark">
+            <Iframe movieID={movieID}></Iframe>
+          </Modal.Body>
+        </Dialog>
       </Modal>
     </>
   );

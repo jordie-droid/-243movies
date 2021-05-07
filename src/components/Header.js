@@ -7,7 +7,7 @@ import Logo from "../images/Logo.svg";
 import Image from "./Image";
 import SearchIcon from "../images/icons/search.svg";
 
-const { transparentLight, dark, orange, light } = Theme;
+const { transparentLight, dark, light, transparentOrange, orange } = Theme;
 
 const PageHeader = styled.header`
   background-color: ${dark};
@@ -68,15 +68,20 @@ const InputSearchContainer = styled.div`
 
 const InputSearch = styled.input`
   background-color: ${dark};
-  border: solid 1px ${orange};
+  border: solid 2px ${transparentOrange};
   width: 370px;
   text-align: center;
   height: 40px;
   color: ${light};
   padding: 0 35px;
   border-radius: 30px;
+  transition: 1s;
   &:focus {
     outline: none;
+    border: solid 2px ${orange};
+  }
+  &:hover {
+    border: solid 2px ${orange};
   }
 `;
 

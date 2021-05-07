@@ -3,12 +3,12 @@ import styled from "styled-components";
 import Theme from "../theme";
 import Logo from "../images/Logo.svg";
 
-const { gray, orange, light, transparentLight, dark } = Theme;
+const { gray, light, dark } = Theme;
 
 const FooterPage = styled.footer`
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   background-color: ${gray};
   color: ${light};
 `;

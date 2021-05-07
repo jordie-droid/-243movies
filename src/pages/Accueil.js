@@ -3,11 +3,9 @@ import Populaire from "./homeSections/Populaire";
 import { PopularMovieContext } from "../context/PopularMovie";
 import HomeSlider from "./homeSections/HomeSlider";
 import Series from "./homeSections/Series";
-import Films from "./homeSections/Films";
 import Actors from "./homeSections/Actors";
 import { PopularSerieContext } from "../context/PopularSerie";
 import { PopularActorsContext } from "../context/PopularActors";
-import { Footer } from "../components/Footer";
 
 export default function Accueil() {
   const [PopularMoviesData] = useContext(PopularMovieContext);
@@ -39,9 +37,7 @@ export default function Accueil() {
           <HomeSlider data={popularMoviesData}></HomeSlider>
           <Populaire data={popularMoviesData}></Populaire>
           <Series data={popularSeriesData}></Series>
-          {/* <Films></Films> */}
           <Actors data={popularActors}></Actors>
-          <Footer></Footer>
         </>
       );
     }

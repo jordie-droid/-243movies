@@ -6,17 +6,24 @@ export default function Iframe({ movieID }) {
   useEffect(() => {
     fetch(urlVideo)
       .then((responses) => responses.json())
-      .then((dataSet) => setTrailer(dataSet));
+      .then((dataSet) => setTrailer(dataSet.results));
   }, [urlVideo]);
 
-  console.log(trailer);
+  const showIframe = () => {
+    if (trailer.length > 0) {
+      return (
+        <iframe
+          title="a"
+          src={`https://www.youtube.com/embed/${trailer[0].key}`}
+          width="100%"
+          height="100%"
+          frameBorder="0"
+        ></iframe>
+      );
+    } else {
+      return <p>La vidéo d'annonce n'est pas encore disponible</p>;
+    }
+  };
 
-  return (
-    <iframe
-      title="a"
-      src="https://www.youtube.com/embed/mijLmCD3W9s"
-      width="100%"
-      height="200"
-    ></iframe>
-  );
+  return <>{showIframe()}</>;
 }

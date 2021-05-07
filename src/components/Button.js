@@ -1,17 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import Theme from "../theme";
-const { light, orange, dark } = Theme;
+const { light, orange, dark, transparentOrange } = Theme;
 const MyButton = styled.button`
   background-color: ${dark};
   width: 110px;
+  height: 40px;
   color: ${light};
-  padding: 10px 0;
-  border: solid 1px ${orange};
-  border-radius: 6px;
+  border: solid 2px ${transparentOrange};
+  border-radius: 30px;
   cursor: pointer;
   &:hover {
-    border: solid 1px ${light};
+    border: solid 2px ${orange};
     color: ${orange};
     transition: 1s;
   }

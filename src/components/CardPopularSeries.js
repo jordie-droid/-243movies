@@ -43,11 +43,11 @@ const Overview = styled.div`
   overflow-x: auto;
   scrollbar-width: thin;
   &::-webkit-scrollbar {
-    width: 1em;
+    width: 0.5rem;
   }
 
   &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px #f5f3f34d;
   }
 
   &::-webkit-scrollbar-thumb {

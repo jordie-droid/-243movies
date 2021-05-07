@@ -11,6 +11,7 @@ import { PopularMovieProvider } from "./context/PopularMovie";
 import { PopularSeriesProvider } from "./context/PopularSerie";
 import { PopularActorsProvider } from "./context/PopularActors";
 import Error404 from "./pages/Error404";
+import { Footer } from "./components/Footer";
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
               <Route exact path="/acteurs.html" component={Acteurs} />
               <Route component={Error404} />
             </Switch>
+            <Footer></Footer>
           </PopularActorsProvider>
         </PopularSeriesProvider>
       </PopularMovieProvider>
