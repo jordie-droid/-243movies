@@ -16,7 +16,11 @@ export default function Accueil() {
   const popularActors = PopularActors.results;
 
   const showHomePage = () => {
-    if (PopularMoviesData.length === 0) {
+    if (
+      PopularMoviesData.length === 0 ||
+      PopularSeriesData.length === 0 ||
+      PopularMoviesData.length === 0
+    ) {
       return (
         <div className="loader-container">
           <div className="lds-roller">

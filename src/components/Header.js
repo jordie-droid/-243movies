@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import Theme from "../theme";
 import Button from "./Button";
@@ -98,6 +98,14 @@ export default function Header() {
     currentMenu.classList.add("actived");
   };
 
+  let [infoToSearch, setInfoToSearch] = useState();
+
+  const submitData = (event) => {
+    event.preventDefault();
+    
+    console.log(infoToSearch);
+  };
+
   return (
     <PageHeader>
       <LogoNavButtonsContainer>
@@ -142,10 +150,15 @@ export default function Header() {
         </GroupButtons>
       </LogoNavButtonsContainer>
       <InputSearchContainer className="input-search-container">
-        <InputSearch
-          type="search"
-          placeholder="Faites votre recherche"
-        ></InputSearch>
+        <form onSubmit={submitData}>
+          <InputSearch
+            type="search"
+            placeholder="Faites votre recherche"
+            onChange={(event) => {
+              setInfoToSearch(event.target.value);
+            }}
+          ></InputSearch>
+        </form>
         <IconSearch src={SearchIcon}></IconSearch>
       </InputSearchContainer>
     </PageHeader>
