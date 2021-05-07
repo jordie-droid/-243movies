@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Theme from "../theme";
+import { Link } from "react-router-dom";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const { light, dark, orange, transparentDark } = Theme;
 const CardContainer = styled.div`
@@ -8,6 +10,10 @@ const CardContainer = styled.div`
   margin: 20px 0px;
   position: relative;
   background-color: ${dark};
+  &:hover div {
+    width: 100%;
+    visibility: visible;
+  }
 `;
 
 const Image = styled.img`
@@ -59,13 +65,26 @@ const Overview = styled.div`
 export default function Card({ data }) {
   let urlImage = `https://image.tmdb.org/t/p/w1280`;
   return (
-    <CardContainer className="card">
-      <Image src={`${urlImage}${data.backdrop_path}`}></Image>
-      <FilmTitle>{data.name}</FilmTitle>
-      <DescriptionTitle>Apparu le : {data.first_air_date}</DescriptionTitle>
-      <br />
-      <DescriptionTitle>Note : {data.vote_average}</DescriptionTitle>
-      <Overview>{data.overview}</Overview>
-    </CardContainer>
+    <OverlayTrigger
+      overlay={
+        <Tooltip id="tooltip">
+          Clique sur l'image pour la vidéo d'annonce
+        </Tooltip>
+      }
+    >
+      <span className="d-inline-block">
+        <CardContainer className="card">
+          <Image src={`${urlImage}${data.backdrop_path}`}></Image>
+          <FilmTitle>{data.name}</FilmTitle>
+          <DescriptionTitle>Apparu le : {data.first_air_date}</DescriptionTitle>
+          <br />
+          <DescriptionTitle>Note : {data.vote_average}</DescriptionTitle>
+          <Overview>{data.overview}</Overview>
+          <Link className="btn-show-more" to="/">
+            Voir plus
+          </Link>
+        </CardContainer>
+      </span>
+    </OverlayTrigger>
   );
 }
