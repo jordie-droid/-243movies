@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Theme from "../theme";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import DefaultCardImage from "../images/defaultImage.png";
 
 const { light, dark, orange, transparentDark } = Theme;
 const CardContainer = styled.div`
@@ -73,12 +74,24 @@ export default function Card({ data, handleShow }) {
     >
       <span className="d-inline-block">
         <CardContainer className="card">
-          <Image src={`${urlImage}${data.backdrop_path}`}></Image>
+          <Image
+            src={
+              data.poster_path
+                ? `${urlImage}${data.poster_path}`
+                : DefaultCardImage
+            }
+          ></Image>
           <FilmTitle>{data.name}</FilmTitle>
-          <DescriptionTitle>Apparu le : {data.first_air_date}</DescriptionTitle>
+          <DescriptionTitle>
+            {data.first_air_date
+              ? `Apparu le : ${data.first_air_date}`
+              : "Pas de date d'apparution"}
+          </DescriptionTitle>
           <br />
           <DescriptionTitle>Note : {data.vote_average}</DescriptionTitle>
-          <Overview onClick={handleShow}>{data.overview}</Overview>
+          <Overview onClick={handleShow}>
+            {data.overview ? data.overview : "Pas de résumé pour cette série"}
+          </Overview>
         </CardContainer>
       </span>
     </OverlayTrigger>

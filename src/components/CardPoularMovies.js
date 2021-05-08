@@ -86,7 +86,7 @@ export default function Card({ data, handleShow }) {
           <DescriptionTitle>
             {data.release_date
               ? `Apparu le : ${data.release_date}`
-              : "Pas de date de réalisation pour film"}
+              : "Pas de date d'apparution pour film"}
           </DescriptionTitle>
           <br />
           <DescriptionTitle>Note : {data.vote_average}</DescriptionTitle>

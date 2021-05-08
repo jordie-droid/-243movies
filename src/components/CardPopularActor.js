@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Theme from "../theme";
+import DefaultCardImage from "../images/defaultImage.png";
 
 const { light, dark } = Theme;
 const CardContainer = styled.div`
@@ -24,9 +25,16 @@ const ActorName = styled.h2`
 
 export default function Card({ data }) {
   let urlImage = `https://image.tmdb.org/t/p/w1280`;
+
   return (
     <CardContainer className="card">
-      <Image src={`${urlImage}${data.profile_path}`}></Image>
+      <Image
+        src={
+          data.profile_path
+            ? `${urlImage}${data.profile_path}`
+            : DefaultCardImage
+        }
+      ></Image>
       <ActorName>{data.name}</ActorName>
     </CardContainer>
   );
