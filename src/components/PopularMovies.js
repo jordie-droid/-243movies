@@ -35,8 +35,7 @@ const PopularContainer = styled.div`
   background-color: ${dark};
 `;
 
-const Dialog = styled.div`
-`;
+const Dialog = styled.div``;
 
 export default function PopularMovie({ title, data }) {
   const [show, setShow] = useState(false);

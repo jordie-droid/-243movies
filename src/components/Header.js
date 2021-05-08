@@ -64,6 +64,7 @@ const InputSearchContainer = styled.div`
   width: 370px;
   background-color: ${dark};
   padding: 10px 0;
+  margin-bottom: 20px;
   align-items: center;
   img {
     position: absolute;

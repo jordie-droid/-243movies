@@ -123,14 +123,26 @@ export default function Recherche({ infoToSearch }) {
     }
   };
 
+  const showHorizontalSeparatorForMovie = () => {
+    if (tvData.length > 0 || actorsData.length > 0) {
+      return <HorizontalSeparator></HorizontalSeparator>;
+    }
+  };
+
   const showMovies = () => {
     if (moviesData.length > 0) {
       return (
         <>
           <PopularMovie title="le (s) films" data={moviesData}></PopularMovie>
-          <HorizontalSeparator></HorizontalSeparator>
+          {showHorizontalSeparatorForMovie()}
         </>
       );
+    }
+  };
+
+  const showHorizontalSeparatorForTv = () => {
+    if (moviesData.length > 0 || actorsData.length > 0) {
+      return <HorizontalSeparator></HorizontalSeparator>;
     }
   };
 
@@ -139,7 +151,7 @@ export default function Recherche({ infoToSearch }) {
       return (
         <>
           <PopularSerie title="la (les) séries" data={tvData}></PopularSerie>
-          <HorizontalSeparator></HorizontalSeparator>
+          {showHorizontalSeparatorForTv()}
         </>
       );
     }
