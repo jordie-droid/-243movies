@@ -24,15 +24,19 @@ export default function Recherche({ infoToSearch }) {
       .then((response) => response.json())
       .then((dataSet) => {
         setTableMovie(dataSet);
-        if (dataSet) {
-          if (dataSet.total_pages > 0) {
-            setMoviesData(
-              dataSet.results.filter((data) => data.media_type === "movie")
-            );
-          }
-        }
+        populateMovieInfo(dataSet);
       });
   }, [url]);
+
+  const populateMovieInfo = (dataSet) => {
+    if (dataSet) {
+      if (dataSet.total_pages > 0) {
+        setMoviesData(
+          dataSet.results.filter((data) => data.media_type === "movie")
+        );
+      }
+    }
+  };
 
   const showMovies = () => {
     if (moviesData.length > 0) {

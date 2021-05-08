@@ -17,6 +17,13 @@ const PageHeader = styled.header`
   z-index: 9998;
 `;
 
+const GlobalResearchLabel = styled.header`
+  font-size: 1rem;
+  color: ${light};
+  text-align: center;
+  margin-top: 20px;
+`;
+
 const LogoNavButtonsContainer = styled.div`
   height: 60px;
   background-color: ${transparentLight};
@@ -52,16 +59,15 @@ const GroupButtons = styled.div`
 
 const InputSearchContainer = styled.div`
   position: relative;
-  margin-top: 10px;
   left: 49.3%;
   transform: translateX(-50%);
   width: 370px;
   background-color: ${dark};
-  padding: 20px 0;
+  padding: 10px 0;
   align-items: center;
   img {
     position: absolute;
-    top: 28px;
+    top: 18px;
     right: 10px;
   }
 `;
@@ -151,8 +157,12 @@ export default function Header({ getInfo }) {
           <Button>Créer un compte</Button>
         </GroupButtons>
       </LogoNavButtonsContainer>
-      <InputSearchContainer className="input-search-container">
-        <form onSubmit={submitData}>
+      <form onSubmit={submitData}>
+        <GlobalResearchLabel>
+          Trouvez rapidement les informations que vous cherchiez sans tenir
+          compte du type
+        </GlobalResearchLabel>
+        <InputSearchContainer className="input-search-container">
           <InputSearch
             type="search"
             placeholder="Rechercher un film, une série ou un acteur"
@@ -161,9 +171,9 @@ export default function Header({ getInfo }) {
               setInfoToSearch(event.target.value);
             }}
           ></InputSearch>
-        </form>
-        <IconSearch src={SearchIcon}></IconSearch>
-      </InputSearchContainer>
+          <IconSearch src={SearchIcon}></IconSearch>
+        </InputSearchContainer>
+      </form>
     </PageHeader>
   );
 }
