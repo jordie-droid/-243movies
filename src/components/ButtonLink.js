@@ -6,7 +6,7 @@ const { dark, light, transparentOrange, orange } = Theme;
 
 const CustomButton = styled.div`
   background-color: ${dark};
-  width: 100px;
+  width: 185px;
   height: 40px;
   color: ${light};
   border: solid 2px ${transparentOrange};
@@ -16,6 +16,7 @@ const CustomButton = styled.div`
   justify-content: center;
   align-items: center;
   margin: 5px;
+  font-size: 1rem;
   &:hover {
     border: solid 2px ${orange};
     color: ${orange};
