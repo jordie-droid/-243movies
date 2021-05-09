@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import ButtonLink from "../components/ButtonLink";
+import TvType from "../components/TvType";
 import PopularSerie from "../components/PopularSeries";
 import { GenreSerieContext } from "../context/GenreSerie";
 import Theme from "../theme";
@@ -8,20 +8,23 @@ import Theme from "../theme";
 const { transparentLight, orange, dark } = Theme;
 
 const GenreTitleContainer = styled.div`
+  margin-top: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: ${transparentLight};
   color: ${orange};
-  padding: 20px;
   margin-bottom: 50px;
   font-size: 2rem;
+  h1 {
+    margin: 50px 0 20px;
+    font-size: 2rem;
+    color: ${orange};
+  }
 `;
 
 const GenreContainer = styled.div`
-  margin-top: 180px;
   margin-bottom: 50px;
-  padding: 20px 0 10px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -33,7 +36,7 @@ const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0;
+  margin: 20px 0 -40px;
 `;
 
 const Prev = styled.div`
@@ -87,7 +90,7 @@ const PageState = styled.div`
   }
 `;
 
-export default function Series() {
+export default function Series(props) {
   const [page, setPage] = useState(1);
   const [GenreSerie] = useContext(GenreSerieContext);
   const nameGenre = GenreSerie.genres;
@@ -104,6 +107,10 @@ export default function Series() {
         setSerieData(dataSet);
       });
   }, [url]);
+
+  const getGenreId = (id) => {
+    props.getGenreId(id);
+  };
 
   const showGenres = () => {
     if (GenreSerie.length === 0 || SeriesData.length === 0) {
@@ -125,10 +132,14 @@ export default function Series() {
       return (
         <>
           <GenreTitleContainer>
-            <h1>Trouver la série que vous cherchiez par son genre</h1>
+            <h1>Trouvez la série que vous cherchez par à sa catégorie</h1>
             <GenreContainer>
               {nameGenre.map(({ id, name }) => (
-                <ButtonLink key={id} text={name}></ButtonLink>
+                <TvType
+                  key={id}
+                  text={name}
+                  genreID={() => getGenreId(id)}
+                ></TvType>
               ))}
             </GenreContainer>
           </GenreTitleContainer>

@@ -148,15 +148,11 @@ export default function Header({ getInfo }) {
                 onClick={activeMenu}
                 to="/acteurs.html"
               >
-                Acteurs
+                Personnes
               </Link>
             </UnStyledList>
           </UnOrderedList>
         </NavFlexBox>
-        <GroupButtons>
-          <Button>Connexion</Button>
-          <Button>Créer un compte</Button>
-        </GroupButtons>
       </LogoNavButtonsContainer>
       <form onSubmit={submitData}>
         <GlobalResearchLabel>

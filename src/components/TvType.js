@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import Theme from "../theme";
 
@@ -24,6 +25,13 @@ const CustomButton = styled.div`
   }
 `;
 
-export default function ButtonLink({ text }) {
-  return <CustomButton>{text}</CustomButton>;
+export default function TvType({ text, genreID }) {
+  let tvTypeResearchLink = useHistory();
+
+  const goToTvTypeReseach = () => {
+    tvTypeResearchLink.push("/tvTypeResearch.html");
+    genreID();
+  };
+
+  return <CustomButton onClick={goToTvTypeReseach}>{text}</CustomButton>;
 }

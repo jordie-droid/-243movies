@@ -9,6 +9,7 @@ const FooterPage = styled.footer`
   position: relative;
   width: 100%;
   height: 80vh;
+  margin-top: 50px;
   background-color: ${gray};
   color: ${light};
 `;
