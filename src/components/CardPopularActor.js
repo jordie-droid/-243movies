@@ -47,7 +47,7 @@ export default function Card({ data }) {
       <ActorName>{data.name}</ActorName>
       <p>Connue pour :</p>
       {data.known_for.map((filmOrTv) => {
-        return <strong>{filmOrTv.title}</strong>;
+        return <strong key={filmOrTv.id}>{filmOrTv.title}</strong>;
       })}
     </CardContainer>
   );

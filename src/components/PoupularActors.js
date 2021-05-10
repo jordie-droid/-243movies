@@ -31,6 +31,7 @@ const PopularContainer = styled.div`
   padding: 10px 0;
   transform: translateX(-50%);
   background-color: ${dark};
+  cursor: pointer;
 `;
 
 export default function PopularActors({ title, data }) {
