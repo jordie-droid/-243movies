@@ -6,6 +6,7 @@ import Series from "./homeSections/Series";
 import Actors from "./homeSections/Actors";
 import { PopularSerieContext } from "../context/PopularSerie";
 import { PopularActorsContext } from "../context/PopularActors";
+import Loader from "../components/Loader";
 
 export default function Accueil() {
   const [PopularMoviesData] = useContext(PopularMovieContext);
@@ -21,20 +22,7 @@ export default function Accueil() {
       PopularSeriesData.length === 0 ||
       PopularMoviesData.length === 0
     ) {
-      return (
-        <div className="loader-container">
-          <div className="lds-roller">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
-      );
+      return <Loader></Loader>;
     } else {
       return (
         <>

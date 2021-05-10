@@ -4,6 +4,7 @@ import TvType from "../components/TvType";
 import PopularSerie from "../components/PopularSeries";
 import { GenreSerieContext } from "../context/GenreSerie";
 import Theme from "../theme";
+import Loader from "../components/Loader";
 
 const { transparentLight, orange, dark, light } = Theme;
 
@@ -114,20 +115,7 @@ export default function Series(props) {
 
   const showGenres = () => {
     if (GenreSerie.length === 0 || SeriesData.length === 0) {
-      return (
-        <div className="loader-container">
-          <div className="lds-roller">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
-      );
+      return <Loader></Loader>;
     } else {
       return (
         <>

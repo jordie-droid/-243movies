@@ -4,6 +4,7 @@ import MovieType from "../components/MovieType";
 import PopularMovie from "../components/PopularMovies";
 import { GenreMovieContext } from "../context/GenreFilm";
 import Theme from "../theme";
+import Loader from "../components/Loader";
 
 const { transparentLight, orange, dark, light } = Theme;
 
@@ -114,20 +115,7 @@ export default function Series(props) {
 
   const showGenres = () => {
     if (GenreMovie.length === 0 || MoviesData.length === 0) {
-      return (
-        <div className="loader-container">
-          <div className="lds-roller">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
-      );
+      return <Loader></Loader>;
     } else {
       return (
         <>

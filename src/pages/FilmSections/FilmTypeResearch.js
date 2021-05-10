@@ -7,7 +7,7 @@ const { light } = Theme;
 
 const NotFoundInformation = styled.h1`
   margin-top: 83px;
-  margin-bottom: 50px;
+  margin-bottom: 300px;
   font-size: 2rem;
   color: ${light};
 `;
@@ -25,7 +25,9 @@ export default function TvTypeResearch({ genreMovieId }) {
       .then((responses) => responses.json())
       .then((dataSet) => {
         setSerieData(
-          dataSet.results.filter((data) => data.genre_ids.includes(genreMovieId))
+          dataSet.results.filter((data) =>
+            data.genre_ids.includes(genreMovieId)
+          )
         );
       });
   }, [url, genreMovieId]);

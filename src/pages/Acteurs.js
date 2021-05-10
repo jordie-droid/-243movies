@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Theme from "../theme";
 import PopularActors from "../components/PoupularActors";
+import Loader from "../components/Loader";
 
 const { transparentLight, orange, dark } = Theme;
 
@@ -140,20 +141,7 @@ export default function Acteurs() {
         </MainContainer>
       );
     } else {
-      return (
-        <div className="loader-container">
-          <div className="lds-roller">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
-      );
+      return <Loader></Loader>;
     }
   };
 
