@@ -5,7 +5,7 @@ export default function Actors({ data }) {
   return (
     <>
       <PopularActors
-        title="20 acteurs les plus populaires"
+        title="20 célébrités les plus populaires"
         data={data}
       ></PopularActors>
     </>

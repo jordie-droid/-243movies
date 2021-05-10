@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import HorizontalSeparator from "../components/HorizontalSeparator";
 import PopularMovie from "../components/PopularMovies";
 import PopularSerie from "../components/PopularSeries";
 import PopularActors from "../components/PoupularActors";
@@ -12,7 +11,7 @@ const H1 = styled.h1`
   text-align: center;
   font-size: 1.5rem;
   color: ${light};
-  margin: 190px 10px 30px;
+  margin: 83px 10px 30px;
 `;
 
 const PaginationContainer = styled.div`
@@ -123,26 +122,13 @@ export default function Recherche({ infoToSearch }) {
     }
   };
 
-  const showHorizontalSeparatorForMovie = () => {
-    if (tvData.length > 0 || actorsData.length > 0) {
-      return <HorizontalSeparator></HorizontalSeparator>;
-    }
-  };
-
   const showMovies = () => {
     if (moviesData.length > 0) {
       return (
         <>
           <PopularMovie title="le (s) films" data={moviesData}></PopularMovie>
-          {showHorizontalSeparatorForMovie()}
         </>
       );
-    }
-  };
-
-  const showHorizontalSeparatorForTv = () => {
-    if (moviesData.length > 0 || actorsData.length > 0) {
-      return <HorizontalSeparator></HorizontalSeparator>;
     }
   };
 
@@ -151,7 +137,6 @@ export default function Recherche({ infoToSearch }) {
       return (
         <>
           <PopularSerie title="la (les) séries" data={tvData}></PopularSerie>
-          {showHorizontalSeparatorForTv()}
         </>
       );
     }

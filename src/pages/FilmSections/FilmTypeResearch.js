@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import PopularSerie from "../../components/PopularSeries";
+import PopularMovie from "../../components/PopularMovies";
 import Theme from "../../theme";
 
 const { light } = Theme;
@@ -15,32 +15,32 @@ const MainContainer = styled.div`
   margin-top: 83px;
 `;
 
-export default function TvTypeResearch({ genreId }) {
-  const [seriesData, setSerieData] = useState([]);
+export default function TvTypeResearch({ genreMovieId }) {
+  const [movieData, setSerieData] = useState([]);
 
-  let url = `https://api.themoviedb.org/3/tv/popular?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR`;
+  let url = `https://api.themoviedb.org/3/movie/popular?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR`;
 
   useEffect(() => {
     fetch(url)
       .then((responses) => responses.json())
       .then((dataSet) => {
         setSerieData(
-          dataSet.results.filter((data) => data.genre_ids.includes(genreId))
+          dataSet.results.filter((data) => data.genre_ids.includes(genreMovieId))
         );
       });
-  }, [url, genreId]);
+  }, [url, genreMovieId]);
 
   const showData = () => {
-    if (seriesData.length > 0) {
+    if (movieData.length > 0) {
       return (
         <MainContainer>
-          <PopularSerie data={seriesData}></PopularSerie>
+          <PopularMovie data={movieData}></PopularMovie>
         </MainContainer>
       );
     } else {
       return (
         <NotFoundInformation>
-          Pas des séries de cette catégorie
+          Pas des films de cette catégorie
         </NotFoundInformation>
       );
     }

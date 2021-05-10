@@ -5,26 +5,26 @@ import PopularSerie from "../components/PopularSeries";
 import { GenreSerieContext } from "../context/GenreSerie";
 import Theme from "../theme";
 
-const { transparentLight, orange, dark } = Theme;
+const { transparentLight, orange, dark, light } = Theme;
 
 const GenreTitleContainer = styled.div`
-  margin-top: 180px;
+  margin-top: 73px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${transparentLight};
+  background-color: ${dark};
   color: ${orange};
   margin-bottom: 50px;
   font-size: 2rem;
   h1 {
-    margin: 50px 0 20px;
+    margin: 20px 0 20px;
     font-size: 2rem;
-    color: ${orange};
+    color: ${light};
   }
 `;
 
 const GenreContainer = styled.div`
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -36,7 +36,7 @@ const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0 -40px;
+  margin: 20px 0 30px;
 `;
 
 const Prev = styled.div`
@@ -132,7 +132,7 @@ export default function Series(props) {
       return (
         <>
           <GenreTitleContainer>
-            <h1>Trouvez la série que vous cherchez par à sa catégorie</h1>
+            <h1>Trouvez la série que vous cherchiez par à sa catégorie</h1>
             <GenreContainer>
               {nameGenre.map(({ id, name }) => (
                 <TvType

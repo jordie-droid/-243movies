@@ -3,12 +3,21 @@ import styled from "styled-components";
 import Theme from "../theme";
 import DefaultCardImage from "../images/defaultImage.png";
 
-const { light, dark } = Theme;
+const { light, dark, orange } = Theme;
 const CardContainer = styled.div`
   width: 300px;
   margin: 20px 0px;
   position: relative;
   background-color: ${dark};
+  strong {
+    color: ${orange};
+  }
+  p {
+    color: ${light};
+    font-size: 1.5;
+    font-weight: 700;
+    margin-bottom: 0px;
+  }
 `;
 
 const Image = styled.img`
@@ -36,6 +45,10 @@ export default function Card({ data }) {
         }
       ></Image>
       <ActorName>{data.name}</ActorName>
+      <p>Connue pour :</p>
+      {data.known_for.map((filmOrTv) => {
+        return <strong>{filmOrTv.title}</strong>;
+      })}
     </CardContainer>
   );
 }

@@ -18,7 +18,7 @@ export default function HomeSlider(props) {
           alt="First slide"
         />
         <Carousel.Caption className="bg-black-transparent">
-          <h3>{sliderFoorData[0].title}</h3>
+          <h1>{sliderFoorData[0].title}</h1>
           <p>{sliderFoorData[0].overview}</p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -29,7 +29,7 @@ export default function HomeSlider(props) {
           alt="Second slide"
         />
         <Carousel.Caption className="bg-black-transparent">
-          <h3>{sliderFoorData[1].title}</h3>
+          <h1>{sliderFoorData[1].title}</h1>
           <p>{sliderFoorData[1].overview}</p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -40,7 +40,7 @@ export default function HomeSlider(props) {
           alt="Third slide"
         />
         <Carousel.Caption className="bg-black-transparent">
-          <h3>{sliderFoorData[2].title}</h3>
+          <h1>{sliderFoorData[2].title}</h1>
           <p>{sliderFoorData[2].overview}</p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -51,7 +51,7 @@ export default function HomeSlider(props) {
           alt="Third slide"
         />
         <Carousel.Caption className="bg-black-transparent">
-          <h3>{sliderFoorData[3].title}</h3>
+          <h1>{sliderFoorData[3].title}</h1>
           <p>{sliderFoorData[3].overview}</p>
         </Carousel.Caption>
       </Carousel.Item>

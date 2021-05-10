@@ -13,7 +13,7 @@ const PopularMainContainer = styled.section`
   display: flex;
   flex-direction: column;
   background-color: ${dark};
-  margin-top: 50px;
+  margin-top: 20px;
   overflow: hidden;
 `;
 const Title = styled.h2`

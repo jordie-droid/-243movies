@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import Theme from "../theme";
-import Button from "./Button";
 import Logo from "../images/Logo.svg";
 import Image from "./Image";
 import SearchIcon from "../images/icons/search.svg";
@@ -17,14 +16,7 @@ const PageHeader = styled.header`
   z-index: 9998;
 `;
 
-const GlobalResearchLabel = styled.header`
-  font-size: 1rem;
-  color: ${light};
-  text-align: center;
-  margin-top: 20px;
-`;
-
-const LogoNavButtonsContainer = styled.div`
+const LogoNavSearchContainer = styled.div`
   height: 60px;
   background-color: ${transparentLight};
   display: flex;
@@ -51,20 +43,10 @@ const UnStyledList = styled.li`
   list-style: none;
 `;
 
-const GroupButtons = styled.div`
-  width: 230px;
-  display: flex;
-  justify-content: space-between;
-`;
-
 const InputSearchContainer = styled.div`
   position: relative;
-  left: 49.3%;
-  transform: translateX(-50%);
-  width: 370px;
-  background-color: ${dark};
+  width: 200px;
   padding: 10px 0;
-  margin-bottom: 20px;
   align-items: center;
   img {
     position: absolute;
@@ -76,7 +58,7 @@ const InputSearchContainer = styled.div`
 const InputSearch = styled.input`
   background-color: ${dark};
   border: solid 2px ${transparentOrange};
-  width: 370px;
+  width: 100%;
   text-align: center;
   height: 40px;
   color: ${light};
@@ -117,7 +99,7 @@ export default function Header({ getInfo }) {
 
   return (
     <PageHeader>
-      <LogoNavButtonsContainer>
+      <LogoNavSearchContainer>
         <Link to="/">
           <Image className="logo" src={Logo}></Image>
         </Link>
@@ -148,29 +130,25 @@ export default function Header({ getInfo }) {
                 onClick={activeMenu}
                 to="/acteurs.html"
               >
-                Personnes
+                Célébrités
               </Link>
             </UnStyledList>
           </UnOrderedList>
         </NavFlexBox>
-      </LogoNavButtonsContainer>
-      <form onSubmit={submitData}>
-        <GlobalResearchLabel>
-          Trouvez rapidement les informations que vous cherchiez sans tenir
-          compte du type
-        </GlobalResearchLabel>
-        <InputSearchContainer className="input-search-container">
-          <InputSearch
-            type="search"
-            placeholder="Rechercher un film, une série ou un acteur"
-            value={infoToSearch}
-            onChange={(event) => {
-              setInfoToSearch(event.target.value);
-            }}
-          ></InputSearch>
-          <IconSearch src={SearchIcon}></IconSearch>
-        </InputSearchContainer>
-      </form>
+        <form onSubmit={submitData}>
+          <InputSearchContainer className="input-search-container">
+            <InputSearch
+              type="search"
+              placeholder="Tapez un mot clé"
+              value={infoToSearch}
+              onChange={(event) => {
+                setInfoToSearch(event.target.value);
+              }}
+            ></InputSearch>
+            <IconSearch src={SearchIcon}></IconSearch>
+          </InputSearchContainer>
+        </form>
+      </LogoNavSearchContainer>
     </PageHeader>
   );
 }
