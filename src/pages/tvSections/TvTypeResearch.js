@@ -4,14 +4,8 @@ import Loader from "../../components/Loader";
 import PopularSerie from "../../components/PopularSeries";
 import Theme from "../../theme";
 
-const { light, dark, orange, transparentLight } = Theme;
+const { dark, orange, transparentLight } = Theme;
 
-const NotFoundInformation = styled.h1`
-  margin-top: 83px;
-  margin-bottom: 500px;
-  font-size: 2rem;
-  color: ${light};
-`;
 const MainContainer = styled.div`
   margin-top: 83px;
 `;
@@ -90,7 +84,7 @@ export default function TvTypeResearch({ genreId }) {
         setData(dataSet);
         setSerieData(dataSet.results);
       });
-  }, [url, genreId]);
+  }, [url]);
 
   const showData = () => {
     if (seriesData.length > 0) {

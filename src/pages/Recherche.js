@@ -11,7 +11,14 @@ const H1 = styled.h1`
   text-align: center;
   font-size: 1.5rem;
   color: ${light};
-  margin: 83px 10px 30px;
+  margin: 83px 10px 40px;
+`;
+
+const NotFound = styled.h1`
+text-align: center;
+  font-size: 1.5rem;
+  color: ${light};
+  margin: 83px 10px 305px;
 `;
 
 const PaginationContainer = styled.div`
@@ -124,9 +131,13 @@ export default function Recherche({ infoToSearch }) {
 
   const showMovies = () => {
     if (moviesData.length > 0) {
-      return (
+      return moviesData.length === 1 ? (
         <>
-          <PopularMovie title="le (s) films" data={moviesData}></PopularMovie>
+          <PopularMovie title="Le film" data={moviesData}></PopularMovie>
+        </>
+      ) : (
+        <>
+          <PopularMovie title="Les films" data={moviesData}></PopularMovie>
         </>
       );
     }
@@ -134,9 +145,13 @@ export default function Recherche({ infoToSearch }) {
 
   const showTv = () => {
     if (tvData.length > 0) {
-      return (
+      return tvData.length === 1 ? (
         <>
-          <PopularSerie title="la (les) séries" data={tvData}></PopularSerie>
+          <PopularSerie title="La série" data={tvData}></PopularSerie>
+        </>
+      ) : (
+        <>
+          <PopularSerie title="Les séries" data={tvData}></PopularSerie>
         </>
       );
     }
@@ -184,12 +199,13 @@ export default function Recherche({ infoToSearch }) {
 
   const showActors = () => {
     if (actorsData.length > 0) {
-      return (
+      return actorsData.length === 1 ? (
         <>
-          <PopularActors
-            title="L' (les) acteurs"
-            data={actorsData}
-          ></PopularActors>
+          <PopularActors title="L'acteur" data={actorsData}></PopularActors>
+        </>
+      ) : (
+        <>
+          <PopularActors title="Les acteurs" data={actorsData}></PopularActors>
         </>
       );
     }
@@ -198,11 +214,11 @@ export default function Recherche({ infoToSearch }) {
   const showInformation = () => {
     if (dataTable) {
       if (dataTable.total_pages < 1) {
-        return <H1>Aucune information relative à {infoToSearch}</H1>;
+        return <NotFound>Aucune information relative à {infoToSearch}</NotFound>;
       } else {
         return (
           <>
-            <H1>Voici l' (les) information (s) relative à {infoToSearch}</H1>
+            <H1>Résultat relative à {infoToSearch}</H1>
             {showPagination()}
             {showMovies()}
             {showTv()}
@@ -212,7 +228,7 @@ export default function Recherche({ infoToSearch }) {
         );
       }
     } else {
-      <H1>Aucune information relative à {infoToSearch}</H1>;
+      <NotFound>Aucune information relative à {infoToSearch}</NotFound>;
     }
   };
 
