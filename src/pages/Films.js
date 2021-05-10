@@ -98,7 +98,7 @@ export default function Series(props) {
   const [MoviesData, setMovieData] = useState([]);
   const dataTable = MoviesData.results;
 
-  let url = `https://api.themoviedb.org/3/movie/popular?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&page=${page}`;
+  let url = `https://api.themoviedb.org/3/discover/movie?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate`;
 
   useEffect(() => {
     fetch(url)
