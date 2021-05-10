@@ -25,12 +25,19 @@ const LogoNavSearchContainer = styled.div`
   padding: 0 20px;
 `;
 
+const LogoNavContainer = styled.div`
+  display: flex;
+  img {
+    position: relative;
+    top: 20px;
+  }
+`;
+
 const NavFlexBox = styled.nav`
   display: flex;
   justify-content: center;
   height: 100%;
   padding: 0 10px;
-  position: relative;
 `;
 
 const UnOrderedList = styled.ul`
@@ -45,7 +52,7 @@ const UnStyledList = styled.li`
 
 const InputSearchContainer = styled.div`
   position: relative;
-  width: 200px;
+  width: 400px;
   padding: 10px 0;
   align-items: center;
   img {
@@ -100,41 +107,47 @@ export default function Header({ getInfo }) {
   return (
     <PageHeader>
       <LogoNavSearchContainer>
-        <Link to="/">
-          <Image className="logo" src={Logo}></Image>
-        </Link>
-        <NavFlexBox>
-          <UnOrderedList>
-            <UnStyledList>
-              <Link className="nav__link actived" onClick={activeMenu} to="/">
-                Accueil
-              </Link>
-            </UnStyledList>
-            <UnStyledList>
-              <Link
-                className="nav__link"
-                onClick={activeMenu}
-                to="/series.html"
-              >
-                Séries
-              </Link>
-            </UnStyledList>
-            <UnStyledList>
-              <Link className="nav__link" onClick={activeMenu} to="/films.html">
-                Films
-              </Link>
-            </UnStyledList>
-            <UnStyledList>
-              <Link
-                className="nav__link"
-                onClick={activeMenu}
-                to="/acteurs.html"
-              >
-                Célébrités
-              </Link>
-            </UnStyledList>
-          </UnOrderedList>
-        </NavFlexBox>
+        <LogoNavContainer>
+          <Link to="/">
+            <Image className="logo" src={Logo}></Image>
+          </Link>
+          <NavFlexBox>
+            <UnOrderedList>
+              <UnStyledList>
+                <Link className="nav__link actived" onClick={activeMenu} to="/">
+                  Accueil
+                </Link>
+              </UnStyledList>
+              <UnStyledList>
+                <Link
+                  className="nav__link"
+                  onClick={activeMenu}
+                  to="/series.html"
+                >
+                  Séries
+                </Link>
+              </UnStyledList>
+              <UnStyledList>
+                <Link
+                  className="nav__link"
+                  onClick={activeMenu}
+                  to="/films.html"
+                >
+                  Films
+                </Link>
+              </UnStyledList>
+              <UnStyledList>
+                <Link
+                  className="nav__link"
+                  onClick={activeMenu}
+                  to="/acteurs.html"
+                >
+                  Célébrités
+                </Link>
+              </UnStyledList>
+            </UnOrderedList>
+          </NavFlexBox>
+        </LogoNavContainer>
         <form onSubmit={submitData}>
           <InputSearchContainer className="input-search-container">
             <InputSearch
