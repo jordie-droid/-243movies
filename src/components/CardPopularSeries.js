@@ -4,7 +4,7 @@ import Theme from "../theme";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import DefaultCardImage from "../images/defaultImage.png";
 
-const { light, dark, orange, transparentDark } = Theme;
+const { light, dark, orange, transparentDark, transparentOrange } = Theme;
 const CardContainer = styled.div`
   width: 300px;
   margin: 20px 0px;
@@ -62,6 +62,28 @@ const Overview = styled.div`
   }
 `;
 
+const VoirPlus = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${dark};
+  width: 110px;
+  max-width: 110px;
+  height: 40px;
+  color: ${light};
+  border: solid 2px ${transparentOrange};
+  border-radius: 30px;
+  cursor: pointer;
+  position: relative;
+  top: -25px;
+  left: 170px;
+  &:hover {
+    border: solid 2px ${orange};
+    color: ${orange};
+    transition: 1s;
+  }
+`;
+
 export default function Card({ data, handleShow }) {
   let urlImage = `https://image.tmdb.org/t/p/w500`;
   return (
@@ -92,6 +114,7 @@ export default function Card({ data, handleShow }) {
           <Overview onClick={handleShow}>
             {data.overview ? data.overview : "Pas de résumé pour cette série"}
           </Overview>
+          <VoirPlus>Voir plus</VoirPlus>
         </CardContainer>
       </span>
     </OverlayTrigger>

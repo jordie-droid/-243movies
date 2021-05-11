@@ -18,6 +18,7 @@ import { useState } from "react";
 import { GenreSerieProvider } from "./context/GenreSerie";
 import { GenreMovieProvider } from "./context/GenreFilm";
 import FilmTypeResearch from "./pages/FilmSections/FilmTypeResearch";
+import VoirPlusActeur from "./pages/VoirPlusCelebrite";
 
 export default function App(props) {
   let [infoToSearch, setInfoToSearch] = useState("");
@@ -73,6 +74,11 @@ export default function App(props) {
                     component={() => (
                       <FilmTypeResearch genreMovieId={genreMovieId} />
                     )}
+                  />
+                  <Route
+                    exact
+                    path="/showMoreCelebrity/:id"
+                    component={VoirPlusActeur}
                   />
                   <Route component={Error404} />
                 </Switch>

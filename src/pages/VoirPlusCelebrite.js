@@ -1,13 +1,15 @@
 import React from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import Theme from "../theme";
 
-const { dark, light } = Theme;
+const { dark, light, transparentOrange, orange } = Theme;
 
 const ConteneurPrincipal = styled.div`
   display: flex;
   background-color: ${dark};
-  width: 100%;
+  width: 90%;
+  margin: 100px 30px 0;
 `;
 
 const ConteneurApropos = styled.div`
@@ -21,7 +23,35 @@ const ConteneurFlexImageConnuPour = styled.div`
   flex-wrap: wrap;
 `;
 
+const VoirPlus = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${dark};
+  width: 110px;
+  max-width: 110px;
+  height: 40px;
+  color: ${light};
+  border: solid 2px ${transparentOrange};
+  border-radius: 30px;
+  cursor: pointer;
+  position: relative;
+  right: 0;
+  &:hover {
+    border: solid 2px ${orange};
+    color: ${orange};
+    transition: 1s;
+  }
+`;
+
 export default function VoirPlusActeur() {
+
+  const history = useHistory();
+
+  const goBackHandle = ()=>{
+    history.goBack();
+  }
+
   return (
     <ConteneurPrincipal>
       <img src="" alt=""></img>
@@ -33,6 +63,7 @@ export default function VoirPlusActeur() {
         <ConteneurFlexImageConnuPour>
           <img src="" alt=""></img>
         </ConteneurFlexImageConnuPour>
+        <VoirPlus onClick={goBackHandle}>Retourner</VoirPlus>
       </ConteneurApropos>
     </ConteneurPrincipal>
   );

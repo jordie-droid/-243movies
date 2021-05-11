@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Theme from "../theme";
 import DefaultCardImage from "../images/defaultImage.png";
+import { useHistory } from "react-router";
 
 const { light, dark, orange } = Theme;
 const CardContainer = styled.div`
@@ -34,9 +35,14 @@ const ActorName = styled.h2`
 
 export default function Card({ data }) {
   let urlImage = `https://image.tmdb.org/t/p/w500`;
+  let history = useHistory();
+
+  const goToShowMoreCelebrity = (id) => {
+    history.push(`showMoreCelebrity/${id}`)
+  };
 
   return (
-    <CardContainer className="card">
+    <CardContainer className="card" onClick={()=>goToShowMoreCelebrity(data.id)}>
       <Image
         src={
           data.profile_path
