@@ -33,7 +33,7 @@ const ActorName = styled.h2`
 `;
 
 export default function Card({ data }) {
-  let urlImage = `https://image.tmdb.org/t/p/w1280`;
+  let urlImage = `https://image.tmdb.org/t/p/w500`;
 
   return (
     <CardContainer className="card">

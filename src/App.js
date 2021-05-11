@@ -19,7 +19,7 @@ import { GenreSerieProvider } from "./context/GenreSerie";
 import { GenreMovieProvider } from "./context/GenreFilm";
 import FilmTypeResearch from "./pages/FilmSections/FilmTypeResearch";
 
-export default function App() {
+export default function App(props) {
   let [infoToSearch, setInfoToSearch] = useState("");
   let [genreTvId, setGenreTvId] = useState(0);
   let [genreMovieId, setGenreMovieId] = useState(0);

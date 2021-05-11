@@ -78,8 +78,7 @@ export default function Acteurs() {
   const [page, setPage] = useState(1);
   const [popularActors, setPopularActors] = useState([]);
   const [dataTable, setDataTable] = useState([]);
-  const urlPopular =
-    "https://api.themoviedb.org/3/person/popular?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&page=1";
+  const urlPopular = `https://api.themoviedb.org/3/person/popular?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&page=${page}`;
   useEffect(() => {
     fetch(urlPopular)
       .then((responses) => responses.json())
@@ -87,7 +86,7 @@ export default function Acteurs() {
         setPopularActors(dataSet.results);
         setDataTable(dataSet);
       });
-  }, []);
+  }, [urlPopular]);
 
   const nextPage = () => {
     if (dataTable) {

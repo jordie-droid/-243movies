@@ -63,7 +63,7 @@ const Overview = styled.div`
 `;
 
 export default function Card({ data, handleShow }) {
-  let urlImage = `https://image.tmdb.org/t/p/w1280`;
+  let urlImage = `https://image.tmdb.org/t/p/w500`;
 
   return (
     <OverlayTrigger

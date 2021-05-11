@@ -52,7 +52,7 @@ const UnStyledList = styled.li`
 
 const InputSearchContainer = styled.div`
   position: relative;
-  width: 400px;
+  width: 300px;
   padding: 10px 0;
   align-items: center;
   img {

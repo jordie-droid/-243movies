@@ -15,7 +15,7 @@ const H1 = styled.h1`
 `;
 
 const NotFound = styled.h1`
-text-align: center;
+  text-align: center;
   font-size: 1.5rem;
   color: ${light};
   margin: 83px 10px 305px;
@@ -201,11 +201,14 @@ export default function Recherche({ infoToSearch }) {
     if (actorsData.length > 0) {
       return actorsData.length === 1 ? (
         <>
-          <PopularActors title="L'acteur" data={actorsData}></PopularActors>
+          <PopularActors title="La célébrité" data={actorsData}></PopularActors>
         </>
       ) : (
         <>
-          <PopularActors title="Les acteurs" data={actorsData}></PopularActors>
+          <PopularActors
+            title="Les célébrité"
+            data={actorsData}
+          ></PopularActors>
         </>
       );
     }
@@ -214,7 +217,9 @@ export default function Recherche({ infoToSearch }) {
   const showInformation = () => {
     if (dataTable) {
       if (dataTable.total_pages < 1) {
-        return <NotFound>Aucune information relative à {infoToSearch}</NotFound>;
+        return (
+          <NotFound>Aucune information relative à {infoToSearch}</NotFound>
+        );
       } else {
         return (
           <>

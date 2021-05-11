@@ -71,7 +71,7 @@ export default function PopularSerie({ title, name, data }) {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
-        size="lg"
+        size="xl"
         aria-labelledby="contained-modal-title-vcenter"
         className="pt-200"
       >
