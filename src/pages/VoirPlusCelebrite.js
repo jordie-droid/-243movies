@@ -1,19 +1,34 @@
-import React from "react";
-import { useHistory } from "react-router";
+import React, { useState, useEffect } from "react";
+import { useHistory, useParams } from "react-router";
 import styled from "styled-components";
 import Theme from "../theme";
+import DefaultCardImage from "../images/defaultImage.png";
 
-const { dark, light, transparentOrange, orange } = Theme;
+const { dark, light, transparentOrange, orange, transparentLight } = Theme;
 
 const ConteneurPrincipal = styled.div`
   display: flex;
-  background-color: ${dark};
+  background-color: ${transparentLight};
   width: 90%;
-  margin: 100px 30px 0;
+  margin: 100px 0 0;
+  padding: 20px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  box-shadow: 0 0 4px ${orange};
+  h3 {
+    color: ${orange};
+    margin-bottom: 10px;
+  }
+  img {
+    border-radius: 8px;
+    max-height: 500px;
+  }
 `;
 
 const ConteneurApropos = styled.div`
-  background-color: ${dark};
+  margin-left: 30px;
   color: ${light};
 `;
 
@@ -23,7 +38,7 @@ const ConteneurFlexImageConnuPour = styled.div`
   flex-wrap: wrap;
 `;
 
-const VoirPlus = styled.div`
+const GoBack = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +51,9 @@ const VoirPlus = styled.div`
   border-radius: 30px;
   cursor: pointer;
   position: relative;
-  right: 0;
+  margin-top: 20px;
+  left: 100%;
+  transform: translateX(-180px);
   &:hover {
     border: solid 2px ${orange};
     color: ${orange};
@@ -44,27 +61,142 @@ const VoirPlus = styled.div`
   }
 `;
 
-export default function VoirPlusActeur() {
+const NotInformation = styled.h1`
+  margin-bottom: 300px;
+`;
 
+const Name = styled.h1`
+  margin-bottom: 30px;
+`;
+
+const CardNowFor = styled.div`
+  width: 150px;
+  display: flex;
+  margin-right: 10px;
+  flex-direction: column;
+  img {
+    width: 100%;
+    height: 150px;
+  }
+`;
+
+const BodyCardNowFor = styled.div`
+  padding: 10px 0;
+`;
+
+export default function GoBackActeur() {
+  let urlImage = `https://image.tmdb.org/t/p/w1280`;
+
+  const [celebrityInfo, setCelebrityInfo] = useState([]);
+  const [knowFor, sectionKnowFor] = useState([]);
+
+  const { id } = useParams();
   const history = useHistory();
 
-  const goBackHandle = ()=>{
-    history.goBack();
-  }
+  const fetchCelebrityInfoUrl = `https://api.themoviedb.org/3/person/${id}?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR`;
+  const fetchMoviesUrl = `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR`;
 
-  return (
-    <ConteneurPrincipal>
-      <img src="" alt=""></img>
-      <ConteneurApropos>
-        <h1>Noms</h1>
-        <h2>Biographie</h2>
-        <p>Biographie text</p>
-        <h2>Connue pour</h2>
-        <ConteneurFlexImageConnuPour>
-          <img src="" alt=""></img>
-        </ConteneurFlexImageConnuPour>
-        <VoirPlus onClick={goBackHandle}>Retourner</VoirPlus>
-      </ConteneurApropos>
-    </ConteneurPrincipal>
-  );
+  useEffect(() => {
+    fetch(fetchMoviesUrl)
+      .then((responses) => responses.json())
+      .then((dataSet) => {
+        sectionKnowFor(dataSet);
+      });
+  }, [fetchMoviesUrl]);
+
+  useEffect(() => {
+    fetch(fetchCelebrityInfoUrl)
+      .then((responses) => responses.json())
+      .then((dataSet) => {
+        setCelebrityInfo(dataSet);
+      });
+  }, [fetchCelebrityInfoUrl]);
+
+  const goBackHandle = () => {
+    history.goBack();
+  };
+
+  const getFoorData = () => {
+    const data = [];
+    if (knowFor.cast) {
+      for (let i = 0; i < 5; i++) {
+        data.push(knowFor.cast[i]);
+      }
+    }
+    return data;
+  };
+
+  const showKnowFor = () => {
+    if (knowFor.cast) {
+      if (knowFor.cast.length > 0) {
+        return (
+          <>
+            <h3>{celebrityInfo.gender === 1 ? "Connue pour" : "Connu pour"}</h3>
+            <ConteneurFlexImageConnuPour>
+              {knowFor.cast.length &&
+                getFoorData().map((data) => {
+                  return (
+                    <CardNowFor key={data && data.id}>
+                      <img
+                        src={
+                          data && data.poster_path
+                            ? `${urlImage}${data.poster_path}`
+                            : DefaultCardImage
+                        }
+                        alt=""
+                      ></img>
+                      <BodyCardNowFor>
+                        <p>
+                          <strong>{data && data.title}</strong>
+                        </p>
+                      </BodyCardNowFor>
+                    </CardNowFor>
+                  );
+                })}
+            </ConteneurFlexImageConnuPour>
+          </>
+        );
+      }
+    }
+  };
+
+  const showInformation = () => {
+    if (celebrityInfo) {
+      return celebrityInfo ? (
+        <>
+          <ConteneurPrincipal id="main-container">
+            <img
+              src={
+                celebrityInfo.profile_path
+                  ? `${urlImage}${celebrityInfo.profile_path}`
+                  : DefaultCardImage
+              }
+              alt=""
+            ></img>
+            <ConteneurApropos>
+              <Name>{celebrityInfo.name}</Name>
+              <h3>Biographie</h3>
+              <p>
+                {celebrityInfo.biography
+                  ? celebrityInfo.biography
+                  : "biographie non disponible"}
+              </p>
+              {celebrityInfo.birthday && (
+                <p>Data de naissance : {celebrityInfo.birthday}</p>
+              )}
+              {celebrityInfo.place_of_birth && (
+                <p>Lieu de naissance : {celebrityInfo.place_of_birth}</p>
+              )}
+              {showKnowFor()}
+            </ConteneurApropos>
+          </ConteneurPrincipal>
+          <GoBack onClick={goBackHandle}>Retourner</GoBack>
+        </>
+      ) : (
+        <NotInformation></NotInformation>
+      );
+    }
+  };
+
+  return <>{showInformation()}</>;
 }

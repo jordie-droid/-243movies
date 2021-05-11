@@ -19,6 +19,9 @@ const CardContainer = styled.div`
     font-weight: 700;
     margin-bottom: 0px;
   }
+  &:hover {
+    transform: scale(1.03);
+  }
 `;
 
 const Image = styled.img`
@@ -38,11 +41,14 @@ export default function Card({ data }) {
   let history = useHistory();
 
   const goToShowMoreCelebrity = (id) => {
-    history.push(`showMoreCelebrity/${id}`)
+    history.push(`showMoreCelebrity/${id}`);
   };
 
   return (
-    <CardContainer className="card" onClick={()=>goToShowMoreCelebrity(data.id)}>
+    <CardContainer
+      className="card"
+      onClick={() => goToShowMoreCelebrity(data.id)}
+    >
       <Image
         src={
           data.profile_path

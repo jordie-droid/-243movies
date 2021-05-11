@@ -10,6 +10,9 @@ const CardContainer = styled.div`
   margin: 20px 0px;
   position: relative;
   background-color: ${dark};
+  &:hover {
+    transform: scale(1.03);
+  }
   &:hover div {
     width: 100%;
     visibility: visible;
