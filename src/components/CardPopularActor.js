@@ -57,7 +57,7 @@ export default function Card({ data }) {
         }
       ></Image>
       <ActorName>{data.name}</ActorName>
-      <p>Connue pour :</p>
+      <p>{data.gender === 1 ? "Connue pour" : "Connu pour"}</p>
       {data.known_for.map((filmOrTv) => {
         return <strong key={filmOrTv.id}>{filmOrTv.title}</strong>;
       })}
