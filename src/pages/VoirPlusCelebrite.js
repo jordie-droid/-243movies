@@ -22,6 +22,7 @@ const ConteneurPrincipal = styled.div`
     margin-bottom: 10px;
   }
   img {
+    width: 300px;
     border-radius: 8px;
     max-height: 500px;
   }
@@ -36,6 +37,7 @@ const ConteneurFlexImageConnuPour = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+
 `;
 
 const GoBack = styled.div`

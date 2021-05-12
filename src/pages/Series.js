@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import TvType from "../components/TvType";
 import PopularSerie from "../components/PopularSeries";
-import { GenreSerieContext } from "../context/GenreSerie";
+import { GenreSerialsContext } from "../context/GenreSerials";
 import Theme from "../theme";
 import Loader from "../components/Loader";
 
@@ -93,11 +93,11 @@ const PageState = styled.div`
 
 export default function Series(props) {
   const [page, setPage] = useState(1);
-  const [GenreSerie] = useContext(GenreSerieContext);
-  const nameGenre = GenreSerie.genres;
+  const [genreSerials] = useContext(GenreSerialsContext);
+  const nameGenre = genreSerials.genres;
 
-  const [SeriesData, setSerieData] = useState([]);
-  const dataTable = SeriesData.results;
+  const [serialsData, setSerialsData] = useState([]);
+  const dataTable = serialsData.results;
 
   let url = `https://api.themoviedb.org/3/tv/popular?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&page=${page}`;
 
@@ -105,7 +105,7 @@ export default function Series(props) {
     fetch(url)
       .then((responses) => responses.json())
       .then((dataSet) => {
-        setSerieData(dataSet);
+        setSerialsData(dataSet);
       });
   }, [url]);
 
@@ -114,7 +114,7 @@ export default function Series(props) {
   };
 
   const showGenres = () => {
-    if (GenreSerie.length === 0 || SeriesData.length === 0) {
+    if (genreSerials.length === 0 || serialsData.length === 0) {
       return <Loader></Loader>;
     } else {
       return (
@@ -141,18 +141,18 @@ export default function Series(props) {
   };
 
   const nextPage = () => {
-    if (SeriesData) {
-      if (SeriesData.total_pages > 1) {
+    if (serialsData) {
+      if (serialsData.total_pages > 1) {
         do {
           setPage(page + 1);
-        } while (page === SeriesData.total_pages);
+        } while (page === serialsData.total_pages);
       }
     }
   };
 
   const prevPage = () => {
-    if (SeriesData) {
-      if (SeriesData.total_pages > 1) {
+    if (serialsData) {
+      if (serialsData.total_pages > 1) {
         do {
           setPage(page - 1);
         } while (page === 1);
@@ -161,15 +161,15 @@ export default function Series(props) {
   };
 
   const showPagination = () => {
-    if (SeriesData) {
-      if (SeriesData.total_pages > 1) {
+    if (serialsData) {
+      if (serialsData.total_pages > 1) {
         return (
           <PaginationContainer>
             <Prev onClick={prevPage}>
               <p>Précédente</p>
             </Prev>
             <PageState>
-              <p>{`${page} sur ${SeriesData.total_pages}`}</p>
+              <p>{`${page} sur ${serialsData.total_pages}`}</p>
             </PageState>
             <Next onClick={nextPage}>
               <p>Suivante</p>

@@ -1,20 +1,25 @@
 import React, { createContext, useState, useEffect } from "react";
 
-export const GenreMovieContext = createContext();
+export const GenreMoviesContext = createContext();
 
-export const GenreMovieProvider = ({ children }) => {
-  const [GenreMovie, setGenreMovie] = useState([]);
-  const urlPopular =
+export const GenreMoviesProvider = ({ children }) => {
+  const [genreMovie, setGenreMovie] = useState([]);
+  const genreMovieUrl =
     "https://api.themoviedb.org/3/genre/movie/list?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&page=1";
+
+  async function fetchMoviesGenre() {
+    const response = await fetch(genreMovieUrl)
+    const data = await response.json()
+    setGenreMovie(data);
+  }
+
   useEffect(() => {
-    fetch(urlPopular)
-      .then((responses) => responses.json())
-      .then((dataSet) => setGenreMovie(dataSet));
+    fetchMoviesGenre();
   }, []);
 
   return (
-    <GenreMovieContext.Provider value={[GenreMovie, setGenreMovie]}>
+    <GenreMoviesContext.Provider value={[genreMovie, setGenreMovie]}>
       {children}
-    </GenreMovieContext.Provider>
+    </GenreMoviesContext.Provider>
   );
 };

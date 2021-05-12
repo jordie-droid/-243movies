@@ -3,6 +3,7 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import styled from "styled-components";
 import Theme from "../theme";
 import DefaultCardImage from "../images/defaultImage.png";
+import { useHistory } from "react-router";
 
 const { light, dark, orange, transparentDark, transparentOrange } = Theme;
 const CardContainer = styled.div`
@@ -88,6 +89,12 @@ const VoirPlus = styled.div`
 `;
 
 export default function Card({ data, handleShow }) {
+  const history = useHistory();
+
+  const goToMovieShowMore = (id) => {
+    history.push(`/movieShowMore/${id}`);
+  };
+
   let urlImage = `https://image.tmdb.org/t/p/w500`;
 
   return (
@@ -118,7 +125,9 @@ export default function Card({ data, handleShow }) {
           <Overview onClick={handleShow}>
             {data.overview ? `${data.overview}` : `Pas de résumé pour ce film`}
           </Overview>
-          <VoirPlus>Voir plus</VoirPlus>
+          <VoirPlus onClick={() => goToMovieShowMore(data.id)}>
+            Voir plus
+          </VoirPlus>
         </CardContainer>
       </span>
     </OverlayTrigger>

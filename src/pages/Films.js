@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import MovieType from "../components/MovieType";
 import PopularMovie from "../components/PopularMovies";
-import { GenreMovieContext } from "../context/GenreFilm";
+import { GenreMoviesContext } from "../context/GenreFilm";
 import Theme from "../theme";
 import Loader from "../components/Loader";
 
@@ -93,7 +93,7 @@ const PageState = styled.div`
 
 export default function Series(props) {
   const [page, setPage] = useState(1);
-  const [GenreMovie] = useContext(GenreMovieContext);
+  const [GenreMovie] = useContext(GenreMoviesContext);
   const nameGenre = GenreMovie.genres;
 
   const [MoviesData, setMovieData] = useState([]);

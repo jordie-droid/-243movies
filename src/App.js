@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Route, Switch } from "react-router";
+import { BrowserRouter } from "react-router-dom";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/style.css";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+
 import Accueil from "./pages/Accueil";
 import Series from "./pages/Series";
 import Films from "./pages/Films";
@@ -13,7 +17,7 @@ import Recherche from "./pages/Recherche";
 import TvTypeResearch from "./pages/tvSections/TvTypeResearch";
 import FilmTypeResearch from "./pages/FilmSections/FilmTypeResearch";
 import VoirPlusActeur from "./pages/VoirPlusCelebrite";
-import { BrowserRouter } from "react-router-dom";
+import MovieShowMore from "./pages/MovieShowMore";
 
 export default function App() {
   let [searchTerm, setSearchTerm] = useState("");
@@ -58,6 +62,11 @@ export default function App() {
             exact
             path="/showMoreCelebrity/:id"
             component={VoirPlusActeur}
+          />
+          <Route
+            exact
+            path="/movieShowMore/:id"
+            component={() => <MovieShowMore />}
           />
           <Route component={Error404} />
         </Switch>
