@@ -86,7 +86,7 @@ const IconSearch = styled.img`
   height: 20px;
 `;
 
-export default function Header({ getInfo }) {
+export default function Header({ getTerm }) {
   const activeMenu = (clickedMenu) => {
     const activedMenu = document.querySelector(".nav__link.actived");
     const currentMenu = clickedMenu.target;
@@ -94,14 +94,14 @@ export default function Header({ getInfo }) {
     currentMenu.classList.add("actived");
   };
 
-  let [infoToSearch, setInfoToSearch] = useState("");
+  let [searchTerm, setsearchTerm] = useState("");
   let goToSearch = useHistory();
 
   const submitData = (event) => {
     event.preventDefault();
     goToSearch.push("/recherche.html");
-    getInfo(infoToSearch);
-    setInfoToSearch("");
+    getTerm(searchTerm);
+    setsearchTerm("");
   };
 
   return (
@@ -153,9 +153,9 @@ export default function Header({ getInfo }) {
             <InputSearch
               type="search"
               placeholder="Tapez un mot clé"
-              value={infoToSearch}
+              value={searchTerm}
               onChange={(event) => {
-                setInfoToSearch(event.target.value);
+                setsearchTerm(event.target.value);
               }}
             ></InputSearch>
             <IconSearch src={SearchIcon}></IconSearch>

@@ -81,14 +81,14 @@ const PageState = styled.div`
   }
 `;
 
-export default function Recherche({ infoToSearch }) {
+export default function Recherche({ searchTerm }) {
   const [page, setPage] = useState(1);
   const [dataTable, setTableMovie] = useState([]);
   const [moviesData, setMoviesData] = useState([]);
   const [tvData, setTvData] = useState([]);
   const [actorsData, setActorsData] = useState([]);
 
-  let url = `https://api.themoviedb.org/3/search/multi?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&page=${page}&include_adult=false&query=${infoToSearch}`;
+  let url = `https://api.themoviedb.org/3/search/multi?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&page=${page}&include_adult=false&query=${searchTerm}`;
 
   useEffect(() => {
     fetch(url)
@@ -217,13 +217,11 @@ export default function Recherche({ infoToSearch }) {
   const showInformation = () => {
     if (dataTable) {
       if (dataTable.total_pages < 1) {
-        return (
-          <NotFound>Aucune information relative à {infoToSearch}</NotFound>
-        );
+        return <NotFound>Aucune information relative à {searchTerm}</NotFound>;
       } else {
         return (
           <>
-            <H1>Résultat relative à {infoToSearch}</H1>
+            <H1>Résultat relative à {searchTerm}</H1>
             {showPagination()}
             {showMovies()}
             {showTv()}
@@ -233,7 +231,7 @@ export default function Recherche({ infoToSearch }) {
         );
       }
     } else {
-      <NotFound>Aucune information relative à {infoToSearch}</NotFound>;
+      <NotFound>Aucune information relative à {searchTerm}</NotFound>;
     }
   };
 

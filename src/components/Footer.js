@@ -78,7 +78,7 @@ const Description = styled.div`
   transform: translateX(-50%);
 `;
 
-export function Footer() {
+export default function Footer() {
   return (
     <FooterPage>
       <ConteneurLogoReseau>
