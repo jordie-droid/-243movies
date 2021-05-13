@@ -86,7 +86,7 @@ const BodyCardNowFor = styled.div`
 `;
 
 export default function GoBackActeur() {
-  let urlImage = `https://image.tmdb.org/t/p/w1280`;
+  let imageUrl = `https://image.tmdb.org/t/p/w1280`;
 
   const [celebrityInfo, setCelebrityInfo] = useState([]);
   const [knowFor, sectionKnowFor] = useState([]);
@@ -141,7 +141,7 @@ export default function GoBackActeur() {
                       <img
                         src={
                           data && data.poster_path
-                            ? `${urlImage}${data.poster_path}`
+                            ? `${imageUrl}${data.poster_path}`
                             : DefaultCardImage
                         }
                         alt=""
@@ -169,7 +169,7 @@ export default function GoBackActeur() {
             <img
               src={
                 celebrityInfo.profile_path
-                  ? `${urlImage}${celebrityInfo.profile_path}`
+                  ? `${imageUrl}${celebrityInfo.profile_path}`
                   : DefaultCardImage
               }
               alt=""

@@ -27,7 +27,7 @@ body {
 }
 
 .logo {
-  width: 150px;
+  width: 100px;
   height: 50px;
 }
 
@@ -107,7 +107,7 @@ body {
 .loader-container {
   display: flex;
   justify-content: center;
-  margin: 360px 0;
+  margin: 300px 0;
 }
 
 .lds-roller {
