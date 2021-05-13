@@ -19,7 +19,8 @@ const MainContainer = styled.div`
   border-radius: 10px;
   &::after {
     content: "";
-    background: url(${(props) => `https://image.tmdb.org/t/p/w1280${props.poster_path}`})
+    background: url(${(props) =>
+        `https://image.tmdb.org/t/p/w1280${props.poster_path}`})
       no-repeat center center;
     background-size: cover;
     opacity: 0.3;
@@ -95,57 +96,57 @@ const CardBody = styled.div`
   padding: 10px 0;
 `;
 
-const SimilarMovieMainContainer = styled.div`
+const SimilarSeriesMainContainer = styled.div`
   padding: 25px;
   color: white;
 `;
 
-const SimilarMovieContainer = styled.div`
+const SimilarSeriesContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
 
-export default function MovieShowMore() {
+export default function SerieShowMore() {
   const { id } = useParams();
 
   const history = useHistory();
 
-  const [movieDetails, setMovieDetails] = useState({});
-  const [movieCredit, setMovieCredit] = useState({});
-  const [similarMovies, setSimularMovies] = useState({});
+  const [serieDetails, setSerieDetails] = useState({});
+  const [serieCredit, setSerieCredit] = useState({});
+  const [similarSeries, setsimilarSeriess] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   const imageUrl = `https://image.tmdb.org/t/p/w1280`;
-  const movieDetailsUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR`;
-  const castingUrl = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR`;
-  const similarMoviesUrl = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&page=1`;
+  const serieDetailsUrl = `https://api.themoviedb.org/3/tv/${id}?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR`;
+  const castingUrl = `https://api.themoviedb.org/3/tv/${id}/credits?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR`;
+  const similarSeriesUrl = `https://api.themoviedb.org/3/tv/${id}/similar?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&page=1`;
 
-  async function fetchMovieDetails() {
-    let response = await fetch(movieDetailsUrl);
+  async function fetchSerieDetails() {
+    let response = await fetch(serieDetailsUrl);
     let data = await response.json();
-    await setMovieDetails(data);
+    await setSerieDetails(data);
 
     response = await fetch(castingUrl);
     data = await response.json();
-    await setMovieCredit(data.cast.filter((actor, index) => index < 10));
+    await setSerieCredit(data.cast.filter((actor, index) => index < 10));
 
-    response = await fetch(similarMoviesUrl);
+    response = await fetch(similarSeriesUrl);
     data = await response.json();
-    await setSimularMovies(data.results.filter((movie, index) => index < 10));
+    await setsimilarSeriess(data.results.filter((serie, index) => index < 10));
 
     await setIsLoading(!isLoading);
   }
 
   useEffect(() => {
-    fetchMovieDetails();
+    fetchSerieDetails();
   }, []);
 
   const goBack = () => {
     history.goBack();
   };
 
-  const dispalayMovieDetails = () => {
-    const { poster_path, title, overview, genres, vote_average } = movieDetails;
+  const dispalaySerieDetails = () => {
+    const { poster_path, name, overview, genres, vote_average } = serieDetails;
     return isLoading ? (
       <Loader></Loader>
     ) : (
@@ -156,16 +157,16 @@ export default function MovieShowMore() {
             alt="affiche du film"
           ></img>
           <DetailsContainer>
-            <h1>{title}</h1>
+            <h1>{name}</h1>
             <p>{overview}</p>
             <strong>{genres.length === 1 ? "Genre : " : "Genres : "}</strong>
             {genres.map(({ id, name }) => {
               return <strong key={id}>{name}</strong>;
             })}
             <h3>note : {vote_average}</h3>
-            <h3>Casting : </h3>
+            <h3>{serieCredit.length > 0 ? "Casting : " : ""}</h3>
             <CanstingCardContainer>
-              {movieCredit.map(({ id, name, character, profile_path }) => {
+              {serieCredit.map(({ id, name, character, profile_path }) => {
                 return (
                   <Card key={id}>
                     <img
@@ -189,12 +190,12 @@ export default function MovieShowMore() {
             </CanstingCardContainer>
           </DetailsContainer>
         </MainContainer>
-        <SimilarMovieMainContainer>
+        <SimilarSeriesMainContainer>
           <h2>
-            {similarMovies.length === 1 ? `Film similaire` : `Films similaires`}
+            {similarSeries.length === 1 ? `Film similaire` : `Films similaires`}
           </h2>
-          <SimilarMovieContainer>
-            {similarMovies.map(({ id, title, poster_path }) => {
+          <SimilarSeriesContainer>
+            {similarSeries.map(({ id, title, poster_path }) => {
               return (
                 <Card key={id}>
                   <img
@@ -211,11 +212,11 @@ export default function MovieShowMore() {
                 </Card>
               );
             })}
-          </SimilarMovieContainer>
-        </SimilarMovieMainContainer>
+          </SimilarSeriesContainer>
+        </SimilarSeriesMainContainer>
         <GoBack onClick={goBack}>Retourner</GoBack>
       </div>
     );
   };
-  return <>{dispalayMovieDetails()}</>;
+  return <>{dispalaySerieDetails()}</>;
 }

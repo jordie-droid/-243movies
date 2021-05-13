@@ -18,6 +18,7 @@ import TvTypeResearch from "./pages/tvSections/TvTypeResearch";
 import FilmTypeResearch from "./pages/FilmSections/FilmTypeResearch";
 import VoirPlusActeur from "./pages/VoirPlusCelebrite";
 import MovieShowMore from "./pages/MovieShowMore";
+import SerieShowMore from "./pages/SerieShowMore";
 
 export default function App() {
   let [searchTerm, setSearchTerm] = useState("");
@@ -68,6 +69,8 @@ export default function App() {
             path="/movieShowMore/:id"
             component={() => <MovieShowMore />}
           />
+
+          <Route exact path = "/serieShowMore/:id" component={SerieShowMore}/>
           <Route component={Error404} />
         </Switch>
         <Footer></Footer>

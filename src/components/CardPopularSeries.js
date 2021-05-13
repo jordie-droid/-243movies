@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Theme from "../theme";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import DefaultCardImage from "../images/defaultImage.png";
+import { useHistory } from "react-router";
 
 const { light, dark, orange, transparentDark, transparentOrange } = Theme;
 const CardContainer = styled.div`
@@ -88,7 +89,14 @@ const VoirPlus = styled.div`
 `;
 
 export default function Card({ data, handleShow }) {
-  let urlImage = `https://image.tmdb.org/t/p/w500`;
+  const urlImage = `https://image.tmdb.org/t/p/w500`;
+
+  const history = useHistory();
+
+  const goBack = (id) => {
+    history.push(`/serieShowMore/${id}`);
+  };
+
   return (
     <OverlayTrigger
       overlay={
@@ -117,7 +125,7 @@ export default function Card({ data, handleShow }) {
           <Overview onClick={handleShow}>
             {data.overview ? data.overview : "Pas de résumé pour cette série"}
           </Overview>
-          <VoirPlus>Voir plus</VoirPlus>
+          <VoirPlus onClick={() => goBack(data.id)}>Voir plus</VoirPlus>
         </CardContainer>
       </span>
     </OverlayTrigger>
