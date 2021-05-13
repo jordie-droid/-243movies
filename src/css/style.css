@@ -83,21 +83,24 @@ body {
   width: 80px;
   height: 74px;
   max-height: 74px;
-  background-color: #fff;
   margin: 0px 10px;
   text-decoration: none;
   font-size: 1rem;
-  color: #ffa111;
+  color: #fff;
   border-radius: 0 0 6px 6px;
 }
 
 .nav__link:hover {
-  color: #000;
+  color: #ffa111;
   text-decoration: wavy;
 }
 
 .actived {
   background-color: #ffa111;
+  color: #fff;
+}
+
+.actived:hover {
   color: #fff;
 }
 

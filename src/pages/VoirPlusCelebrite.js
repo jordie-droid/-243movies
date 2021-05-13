@@ -4,11 +4,11 @@ import styled from "styled-components";
 import Theme from "../theme";
 import DefaultCardImage from "../images/defaultImage.png";
 
-const { dark, light, transparentOrange, orange, transparentLight } = Theme;
+const { dark, light, transparentOrange, orange } = Theme;
 
 const ConteneurPrincipal = styled.div`
   display: flex;
-  background-color: ${transparentLight};
+  background-color: ${dark};
   width: 90%;
   margin: 100px 0 0;
   padding: 20px;
@@ -16,7 +16,6 @@ const ConteneurPrincipal = styled.div`
   left: 50%;
   transform: translateX(-50%);
   border-radius: 10px;
-  box-shadow: 0 0 4px ${orange};
   h3 {
     color: ${orange};
     margin-bottom: 10px;

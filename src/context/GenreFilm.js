@@ -8,8 +8,8 @@ export const GenreMoviesProvider = ({ children }) => {
     "https://api.themoviedb.org/3/genre/movie/list?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&page=1";
 
   async function fetchMoviesGenre() {
-    const response = await fetch(genreMovieUrl)
-    const data = await response.json()
+    const response = await fetch(genreMovieUrl);
+    const data = await response.json();
     setGenreMovie(data);
   }
 
