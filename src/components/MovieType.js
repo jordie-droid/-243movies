@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router";
 import styled from "styled-components";
 import Theme from "../theme";
 
@@ -25,13 +24,6 @@ const CustomButton = styled.div`
   }
 `;
 
-export default function MovieType({ text, genreID }) {
-  let MovieTypeResearchLink = useHistory();
-
-  const goToMovieTypeReseach = () => {
-    MovieTypeResearchLink.push("/MovieTypeResearch.html");
-    genreID();
-  };
-
-  return <CustomButton onClick={goToMovieTypeReseach}>{text}</CustomButton>;
+export default function MovieType({ text, onClick }) {
+  return <CustomButton onClick={onClick}>{text}</CustomButton>;
 }

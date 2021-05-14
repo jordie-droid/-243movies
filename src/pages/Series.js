@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import TvType from "../components/TvType";
+import TvType from "../components/TvGenre";
 import PopularSerie from "../components/PopularSeries";
-import { GenreSerialsContext } from "../context/GenreSerials";
+import { SeriesGenresContext } from "../context/SeriesGenres";
 import Theme from "../theme";
 import Loader from "../components/Loader";
 
@@ -91,94 +91,82 @@ const PageState = styled.div`
   }
 `;
 
-export default function Series(props) {
+export default function Series() {
   const [page, setPage] = useState(1);
-  const [genreSerials] = useContext(GenreSerialsContext);
-  const nameGenre = genreSerials.genres;
-
+  const [isLoading, setIsLoading] = useState(true);
   const [serialsData, setSerialsData] = useState([]);
-  const dataTable = serialsData.results;
+  const [seriesResults, setSeriesResults] = useState([]);
 
-  let url = `https://api.themoviedb.org/3/tv/popular?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&page=${page}`;
+  const [seriesGenres] = useContext(SeriesGenresContext);
+
+  const url = `https://api.themoviedb.org/3/discover/tv?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&page=${page}`;
+
+  async function fetchSeries() {
+    const response = await fetch(url);
+    const data = await response.json();
+    await setSerialsData(data);
+    await setSeriesResults(data.results);
+    await setIsLoading(false);
+  }
 
   useEffect(() => {
-    fetch(url)
-      .then((responses) => responses.json())
-      .then((dataSet) => {
-        setSerialsData(dataSet);
-      });
+    fetchSeries();
   }, [url]);
 
-  const getGenreId = (id) => {
-    props.getGenreId(id);
-  };
-
-  const showGenres = () => {
-    if (genreSerials.length === 0 || serialsData.length === 0) {
-      return <Loader></Loader>;
-    } else {
-      return (
-        <>
-          <GenreTitleContainer>
-            <h1>Trouvez la série que vous cherchiez par à sa catégorie</h1>
-            <GenreContainer>
-              {nameGenre.map(({ id, name }) => (
-                <TvType
-                  key={id}
-                  text={name}
-                  genreID={() => getGenreId(id)}
-                ></TvType>
-              ))}
-            </GenreContainer>
-          </GenreTitleContainer>
-          {showPagination()}
-          <PopularSerie title="" data={dataTable}></PopularSerie>
-          {showPagination()}
-          <br />
-        </>
-      );
-    }
+  const showseriesGenres = () => {
+    return isLoading ? (
+      <Loader></Loader>
+    ) : (
+      <>
+        <GenreTitleContainer>
+          <h1>Trouvez la série que vous cherchiez par à sa catégorie</h1>
+          <GenreContainer>
+            {seriesGenres.map(({ id, name }) => (
+              <TvType key={id} text={name}></TvType>
+            ))}
+          </GenreContainer>
+        </GenreTitleContainer>
+        {showPagination()}
+        <PopularSerie title="" data={seriesResults}></PopularSerie>
+        {showPagination()}
+        <br />
+      </>
+    );
   };
 
   const nextPage = () => {
-    if (serialsData) {
-      if (serialsData.total_pages > 1) {
-        do {
-          setPage(page + 1);
-        } while (page === serialsData.total_pages);
-      }
+    if (serialsData.total_pages > 1) {
+      do {
+        setPage(page + 1);
+      } while (page === serialsData.total_pages);
     }
   };
 
   const prevPage = () => {
-    if (serialsData) {
-      if (serialsData.total_pages > 1) {
-        do {
-          setPage(page - 1);
-        } while (page === 1);
-      }
+    if (serialsData.total_pages > 1) {
+      do {
+        setPage(page - 1);
+      } while (page === 1);
     }
   };
 
   const showPagination = () => {
-    if (serialsData) {
-      if (serialsData.total_pages > 1) {
-        return (
-          <PaginationContainer>
-            <Prev onClick={prevPage}>
-              <p>Précédente</p>
-            </Prev>
-            <PageState>
-              <p>{`${page} sur ${serialsData.total_pages}`}</p>
-            </PageState>
-            <Next onClick={nextPage}>
-              <p>Suivante</p>
-            </Next>
-          </PaginationContainer>
-        );
-      }
+    if (serialsData.total_pages > 1) {
+      return (
+        <PaginationContainer>
+          <Prev onClick={prevPage}>
+            <p>Précédente</p>
+          </Prev>
+          <PageState>
+            <p>{`${page} sur ${serialsData.total_pages}`}</p>
+          </PageState>
+          <Next onClick={nextPage}>
+            <p>Suivante</p>
+          </Next>
+        </PaginationContainer>
+      );
     }
   };
 
-  return <>{showGenres()}</>;
+  return <>{showseriesGenres()}</>;
 }

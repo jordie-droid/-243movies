@@ -19,8 +19,7 @@ const MainContainer = styled.div`
   border-radius: 10px;
   &::after {
     content: "";
-    background: url(${(props) =>
-        `https://image.tmdb.org/t/p/w1280${props.poster_path}`})
+    background: url(${(props) => `https://image.tmdb.org/t/p/w1280${props.poster_path}`})
       no-repeat center center;
     background-size: cover;
     opacity: 0.3;

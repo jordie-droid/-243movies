@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import styled from "styled-components";
 import Loader from "../../components/Loader";
 import PopularMovie from "../../components/PopularMovies";
@@ -70,76 +71,71 @@ const PageState = styled.div`
   }
 `;
 
-export default function TvTypeResearch({ genreMovieId }) {
+export default function SearchMoviesGenre() {
   const [movieData, setMovieData] = useState([]);
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { id } = useParams();
 
-  let url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreMovieId}&api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&page=${page}`;
+  const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${id}&api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&page=${page}`;
+  
+  async function fetchMovieByGenre() {
+    const response = await fetch(url);
+    const data = await response.json();
+    await setData(data);
+    await setMovieData(data.results);
+    await setIsLoading(false);
+  }
 
   useEffect(() => {
-    fetch(url)
-      .then((responses) => responses.json())
-      .then((dataSet) => {
-        setData(dataSet);
-        setMovieData(dataSet.results);
-      });
+    fetchMovieByGenre();
   }, [url]);
 
   const nextPage = () => {
-    if (data) {
-      if (data.total_pages > 1) {
-        do {
-          setPage(page + 1);
-        } while (page === data.total_pages);
-      }
+    if (data.total_pages > 1) {
+      do {
+        setPage(page + 1);
+      } while (page === data.total_pages);
     }
   };
 
   const prevPage = () => {
-    if (data) {
-      if (data.total_pages > 1) {
-        do {
-          setPage(page - 1);
-        } while (page === 1);
-      }
+    if (data.total_pages > 1) {
+      do {
+        setPage(page - 1);
+      } while (page === 1);
     }
   };
 
   const showPagination = () => {
-    if (data) {
-      if (data.total_pages > 1) {
-        return (
-          <PaginationContainer>
-            <Prev onClick={prevPage}>
-              <p>Précédente</p>
-            </Prev>
-            <PageState>
-              <p>{`${page} sur ${data.total_pages}`}</p>
-            </PageState>
-            <Next onClick={nextPage}>
-              <p>Suivante</p>
-            </Next>
-          </PaginationContainer>
-        );
-      }
+    if (data.total_pages > 1) {
+      return (
+        <PaginationContainer>
+          <Prev onClick={prevPage}>
+            <p>Précédente</p>
+          </Prev>
+          <PageState>
+            <p>{`${page} sur ${data.total_pages}`}</p>
+          </PageState>
+          <Next onClick={nextPage}>
+            <p>Suivante</p>
+          </Next>
+        </PaginationContainer>
+      );
     }
   };
 
   const showData = () => {
-    if (movieData) {
-      if (movieData.length > 0) {
-        return (
-          <MainContainer>
-            {showPagination()}
-            <PopularMovie data={movieData}></PopularMovie>
-            {showPagination()}
-          </MainContainer>
-        );
-      } else {
-        return <Loader></Loader>;
-      }
-    }
+    return isLoading ? (
+      <Loader></Loader>
+    ) : (
+      <MainContainer>
+        {showPagination()}
+        <PopularMovie data={movieData}></PopularMovie>
+        {showPagination()}
+      </MainContainer>
+    );
   };
 
   return <>{showData()}</>;

@@ -10,20 +10,18 @@ import Footer from "./components/Footer";
 
 import Accueil from "./pages/Accueil";
 import Series from "./pages/Series";
-import Films from "./pages/Films";
+import Films from "./pages/Movies";
 import Acteurs from "./pages/Acteurs";
 import Error404 from "./pages/Error404";
 import Recherche from "./pages/Recherche";
 import TvTypeResearch from "./pages/tvSections/TvTypeResearch";
-import FilmTypeResearch from "./pages/FilmSections/FilmTypeResearch";
+import SearchMoviesGenre from "./pages/FilmSections/SearchMoviesGenre";
 import VoirPlusActeur from "./pages/VoirPlusCelebrite";
 import MovieShowMore from "./pages/MovieShowMore";
 import SerieShowMore from "./pages/SerieShowMore";
 
 export default function App() {
-  let [searchTerm, setSearchTerm] = useState("");
-  let [seriesGenreId, setSeriesGenreId] = useState(0);
-  let [movieGenreId, setMovieGenreId] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <>
@@ -35,13 +33,13 @@ export default function App() {
             exact
             path="/series.html"
             component={() => (
-              <Series getGenreId={(id) => setSeriesGenreId(id)} />
+              <Series/>
             )}
           />
           <Route
             exact
             path="/films.html"
-            component={() => <Films getGenreId={(id) => setMovieGenreId(id)} />}
+            component={() => <Films/>}
           />
           <Route exact path="/acteurs.html" component={Acteurs} />
           <Route
@@ -52,12 +50,12 @@ export default function App() {
           <Route
             exact
             path="/tvTypeResearch.html"
-            component={() => <TvTypeResearch genreId={seriesGenreId} />}
+            component={() => <TvTypeResearch/>}
           />
           <Route
             exact
-            path="/movieTypeResearch.html"
-            component={() => <FilmTypeResearch movieGenreId={movieGenreId} />}
+            path="/searchMovieByGenre/:id"
+            component={SearchMoviesGenre}
           />
           <Route
             exact

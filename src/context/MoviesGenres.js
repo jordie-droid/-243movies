@@ -10,7 +10,7 @@ export const GenreMoviesProvider = ({ children }) => {
   async function fetchMoviesGenre() {
     const response = await fetch(genreMovieUrl);
     const data = await response.json();
-    await setGenreMovie(data);
+    await setGenreMovie(data.genres);
   }
 
   useEffect(() => {

@@ -1,17 +1,17 @@
 import { PopularMovieProvider } from "./PopularMovie";
 import { PopularSeriesProvider } from "./PopularSerie";
 import { PopularActorsProvider } from "./PopularActors";
-import { GenreSerialsProvider } from "./GenreSerials";
-import { GenreMoviesProvider } from "./GenreFilm";
+import { SeriesGenresProvider } from "./SeriesGenres";
+import { GenreMoviesProvider } from "./MoviesGenres";
 
 export default function AppProvider({ children }) {
   return (
     <PopularMovieProvider>
       <PopularSeriesProvider>
         <PopularActorsProvider>
-          <GenreSerialsProvider>
+          <SeriesGenresProvider>
             <GenreMoviesProvider>{children}</GenreMoviesProvider>
-          </GenreSerialsProvider>
+          </SeriesGenresProvider>
         </PopularActorsProvider>
       </PopularSeriesProvider>
     </PopularMovieProvider>

@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import MovieType from "../components/MovieType";
 import PopularMovie from "../components/PopularMovies";
-import { GenreMoviesContext } from "../context/GenreFilm";
+import { GenreMoviesContext } from "../context/MoviesGenres";
 import Theme from "../theme";
 import Loader from "../components/Loader";
+import { useHistory } from "react-router";
 
 const { transparentLight, orange, dark, light } = Theme;
 
@@ -91,68 +92,71 @@ const PageState = styled.div`
   }
 `;
 
-export default function Series(props) {
+export default function Movies() {
   const [page, setPage] = useState(1);
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const history = useHistory();
+
   const [GenreMovie] = useContext(GenreMoviesContext);
-  const nameGenre = GenreMovie.genres;
 
-  const [MoviesData, setMovieData] = useState([]);
-  const dataTable = MoviesData.results;
+  const movies = data.results;
 
-  let url = `https://api.themoviedb.org/3/discover/movie?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate`;
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=d6ad6af3d05f971cd2712d949276910b&language=fr-FR&page=${page}`;
+
+  async function fetchMovieGenre() {
+    const response = await fetch(url);
+    const data = await response.json();
+    await setData(data);
+    await setIsLoading(false);
+  }
 
   useEffect(() => {
-    fetch(url)
-      .then((responses) => responses.json())
-      .then((dataSet) => {
-        setMovieData(dataSet);
-      });
+    fetchMovieGenre();
   }, [url]);
 
-  const getGenreId = (id) => {
-    props.getGenreId(id);
+  const searchMovieByGenre = (id) => {
+    history.push(`/searchMovieByGenre/${id}`);
   };
 
-  const showGenres = () => {
-    if (GenreMovie.length === 0 || MoviesData.length === 0) {
-      return <Loader></Loader>;
-    } else {
-      return (
-        <>
-          <GenreTitleContainer>
-            <h1>Trouvez le film que vous cherchiez par à sa catégorie</h1>
-            <GenreContainer>
-              {nameGenre.map(({ id, name }) => (
-                <MovieType
-                  key={id}
-                  text={name}
-                  genreID={() => getGenreId(id)}
-                ></MovieType>
-              ))}
-            </GenreContainer>
-          </GenreTitleContainer>
-          {showPagination()}
-          <PopularMovie title="" data={dataTable}></PopularMovie>
-          {showPagination()}
-          <br />
-        </>
-      );
-    }
+  const showMovies = () => {
+    return isLoading ? (
+      <Loader></Loader>
+    ) : (
+      <>
+        <GenreTitleContainer>
+          <h1>Trouvez le film que vous cherchiez par à sa catégorie</h1>
+          <GenreContainer>
+            {GenreMovie.map(({ id, name }) => (
+              <MovieType
+                key={id}
+                text={name}
+                onClick={() => searchMovieByGenre(id)}
+              ></MovieType>
+            ))}
+          </GenreContainer>
+        </GenreTitleContainer>
+        {showPagination()}
+        <PopularMovie title="" data={movies}></PopularMovie>
+        {showPagination()}
+        <br />
+      </>
+    );
   };
 
   const nextPage = () => {
-    if (MoviesData) {
-      if (MoviesData.total_pages > 1) {
+    if (data) {
+      if (data.total_pages > 1) {
         do {
           setPage(page + 1);
-        } while (page === MoviesData.total_pages);
+        } while (page === data.total_pages);
       }
     }
   };
 
   const prevPage = () => {
-    if (MoviesData) {
-      if (MoviesData.total_pages > 1) {
+    if (data) {
+      if (data.total_pages > 1) {
         do {
           setPage(page - 1);
         } while (page === 1);
@@ -161,15 +165,15 @@ export default function Series(props) {
   };
 
   const showPagination = () => {
-    if (MoviesData) {
-      if (MoviesData.total_pages > 1) {
+    if (data) {
+      if (data.total_pages > 1) {
         return (
           <PaginationContainer>
             <Prev onClick={prevPage}>
               <p>Précédente</p>
             </Prev>
             <PageState>
-              <p>{`${page} sur ${MoviesData.total_pages}`}</p>
+              <p>{`${page} sur ${data.total_pages}`}</p>
             </PageState>
             <Next onClick={nextPage}>
               <p>Suivante</p>
@@ -180,5 +184,5 @@ export default function Series(props) {
     }
   };
 
-  return <>{showGenres()}</>;
+  return <>{showMovies()}</>;
 }
